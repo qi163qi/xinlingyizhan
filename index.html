@@ -1417,7 +1417,7 @@ var H2={
     });
     document.getElementById('classroom-list').style.display='block';
     document.getElementById('classroom-list').innerHTML=h;
-    document.getElementById('classroom-detail').innerHTML='';
+    document.getElementById('classroom-detail').style.display='none';
   },
   showLesson:function(i){
     var lesson=this.classroom[i];
@@ -1429,7 +1429,7 @@ var H2={
     h+='<div style="background:var(--lgreen);border-radius:12px;padding:14px;margin-top:12px"><span style="font-weight:700;color:var(--dgreen)">✏ 课后练习：</span><span style="font-size:14px;color:var(--text)">'+lesson.exercise+'</span></div>';
     h+='<div style="margin-top:12px;text-align:center"><button class="btn btn-p" onclick="H2.initClassroom()">✅ 已完成学习</button></div>';
     document.getElementById('classroom-list').style.display='none';
-    var cd=document.getElementById('classroom-detail');cd.innerHTML=h;
+    var cd=document.getElementById('classroom-detail');cd.style.display='block';cd.innerHTML=h;
     cd.scrollIntoView({behavior:'smooth'});
   },
   clearWriting:function(){
