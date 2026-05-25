@@ -1367,6 +1367,7 @@ var H2={
     var self=this,h='';this.exercises.forEach(function(ex){
       h+='<div class="exercise-card" onclick="H2.showExercise('+(ex.num-1)+')"><span class="ex-num">'+ex.num+'</span><span style="font-weight:600;color:var(--dbrown)">'+ex.title+'</span><div style="font-size:12px;color:var(--tlight);margin-top:4px;margin-left:36px">'+ex.desc+'</div></div>';
     });
+    document.getElementById('exercise-list').style.display='block';
     document.getElementById('exercise-list').innerHTML=h;
     document.getElementById('exercise-detail').style.display='none';
   },
@@ -1414,6 +1415,7 @@ var H2={
     var self=this,h='';this.classroom.forEach(function(lesson){
       h+='<div class="exercise-card" onclick="H2.showLesson('+(lesson.num-1)+')" style="cursor:pointer"><span class="ex-num">'+lesson.num+'</span><span style="font-weight:600;color:var(--dbrown)">'+lesson.title+'</span><div style="font-size:12px;color:var(--tlight);margin-top:4px;margin-left:36px">'+lesson.source+'</div></div>';
     });
+    document.getElementById('classroom-list').style.display='block';
     document.getElementById('classroom-list').innerHTML=h;
     document.getElementById('classroom-detail').innerHTML='';
   },
