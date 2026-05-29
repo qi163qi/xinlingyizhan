@@ -1043,21 +1043,21 @@ var TODAY={
 
   // ── Date ──
   goDay:function(delta){
-    var d=new Date(this.date+'T00:00:00');
-    d.setDate(d.getDate()+delta);
+    var d=new Date(this.date);
+    d.setUTCDate(d.getUTCDate()+delta);
     this.date=d.toISOString().slice(0,10);
     this.init();
   },
 
   renderDateLabel:function(){
-    var d=new Date(this.date+'T00:00:00');
+    var d=new Date(this.date);
     var today=new Date().toISOString().slice(0,10);
     var isToday=this.date===today;
     var label='';
     if(isToday)label='今天';
-    else{var m=d.getMonth()+1;var day=d.getDate();label=m+'月'+day+'日';}
+    else{var m=d.getUTCMonth()+1;var day=d.getUTCDate();label=m+'月'+day+'日';}
     var w=['日','一','二','三','四','五','六'];
-    label+=' 星期'+w[d.getDay()];
+    label+=' 星期'+w[d.getUTCDay()];
     var moods=S.get('moods',[]);var self=this;
     var hasMood=moods.some(function(x){return x.time&&x.time.slice(0,10)===self.date});
     var hasDiary=S.get('write_'+this.date,'');
