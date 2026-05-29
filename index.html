@@ -1096,23 +1096,27 @@ var TODAY={
   },
 
   loadMood:function(){
-    var self=this;this._selectedMood=null;
+    var self=this;this._selectedMood=null;this._moodNote='';
     var moods=S.get('moods',[]);
     var btns=document.querySelectorAll('#td-mbtns .mood-btn');
     btns.forEach(function(b){b.classList.remove('sel')});
-    moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===self.date)self._selectedMood=m.level;});
+    moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===self.date){self._selectedMood=m.level;if(m.note)self._moodNote=m.note;}});
     if(this._selectedMood){
       var labels={1:'😢 难过',2:'😕 低落',3:'😐 平静',4:'😀 开心',5:'😊 幸福'};
-      document.getElementById('td-mood-label').textContent='已记录：'+labels[this._selectedMood];
+      var txt='已记录：'+labels[this._selectedMood];
+      if(this._moodNote)txt+='（附有笔记）';
+      document.getElementById('td-mood-label').textContent=txt;
       btns[this._selectedMood-1].classList.add('sel');
     }else{
       document.getElementById('td-mood-label').textContent='';
     }
   },
 
-  // ── Diary ──
+  // ── Diary：优先读日记，没有则回退到当日心情备注 ──
   loadDiary:function(){
-    document.getElementById('td-diary').value=S.get('write_'+this.date,'');
+    var diary=S.get('write_'+this.date,'');
+    if(!diary&&this._moodNote)diary=this._moodNote;
+    document.getElementById('td-diary').value=diary;
   },
 
   // ── Gratitude ──
