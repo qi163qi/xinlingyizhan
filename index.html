@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <title>心灵驿站 · 疗愈与成长</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f7f3eb;--card:#fefcf7;--hbg:#f0eadb;
@@ -17,47 +20,48 @@
   --nav-h:64px;--safe-b:env(safe-area-inset-bottom,0px);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+body{font-size:15px}
+body.size-s{font-size:13px} body.size-l{font-size:17px}
+body.font-serif{--font:"Noto Serif SC","Source Han Serif SC","SimSun","STSong",serif}
 body{
   font-family:var(--font);color:var(--text);
   -webkit-tap-highlight-color:transparent;overscroll-behavior:none;
+  touch-action:manipulation;
   min-height:100dvh;font-size:15px;line-height:1.6;
-  background:
-    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(180,170,150,.03) 2px,rgba(180,170,150,.03) 3px),
-    radial-gradient(circle,rgba(155,139,116,.06) 1px,transparent 1px),
-    linear-gradient(175deg,#f9f5ed 0%,#f3efe3 40%,#f7f3eb 100%);
-  background-size:100% 100%,28px 28px,100% 100%;
-  background-attachment:fixed;
-}
-body::before{
-  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 15% 10%,rgba(132,151,116,.06) 0%,transparent 55%),
-    radial-gradient(ellipse at 85% 90%,rgba(212,184,122,.07) 0%,transparent 55%),
-    radial-gradient(ellipse at 50% 50%,rgba(139,164,176,.04) 0%,transparent 60%);
+  background: linear-gradient(175deg, #f9f5ed 0%, #f3efe3 40%, #f7f3eb 100%);
+  background-attachment: fixed;
+  scroll-behavior:smooth;
 }
 
+
 /* floating decorations */
-@keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-14px) rotate(3deg)}66%{transform:translateY(-5px) rotate(-2deg)}}
-@keyframes floatB{0%,100%{transform:translateY(0) rotate(0deg)}30%{transform:translateY(-16px) rotate(-4deg)}60%{transform:translateY(-6px) rotate(2deg)}}
-@keyframes floatC{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.06)}}
-.deco-f{position:fixed;pointer-events:none;z-index:-1;opacity:.11;font-size:36px;user-select:none}
+@keyframes floatA{0%,100%{transform:translateY(0)}33%{transform:translateY(-14px)}66%{transform:translateY(-5px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}33%{transform:translateY(-16px)}66%{transform:translateY(-6px)}}
+@keyframes floatC{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.deco-f{position:fixed;pointer-events:none;z-index:-1;opacity:.08;font-size:36px;user-select:none}
 .deco-f.d1{top:6%;left:3%;animation:floatA 7s ease-in-out infinite;font-size:44px}
 .deco-f.d2{top:16%;right:5%;animation:floatB 8s ease-in-out infinite;font-size:32px}
 .deco-f.d3{bottom:22%;left:4%;animation:floatC 6.5s ease-in-out infinite;font-size:36px}
 .deco-f.d4{bottom:14%;right:3%;animation:floatA 7.5s ease-in-out infinite;font-size:30px}
 .deco-f.d5{top:50%;left:2%;animation:floatB 9s ease-in-out infinite;font-size:26px}
+@media (prefers-reduced-motion:reduce){
+  .deco-f{animation:none;opacity:.04}
+  .page{animation:none}
+  .chat-bubble{animation:none}
+  .breath-circle{transition:none}
+}
 
 /* app container */
 .app{max-width:520px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;padding-bottom:calc(var(--nav-h) + var(--safe-b) + 8px)}
 
 /* header */
 .header{
-  text-align:center;padding:18px 16px 12px;
-  background:linear-gradient(180deg,#f4efe0,#efe9d8);
+  text-align:center;padding:20px 16px 14px;
+  background:linear-gradient(180deg,#f4efe0 0%,#efe9d8 60%,#eae3cf 100%);
   border-bottom:2px solid var(--green);
   position:relative;
 }
-.header h1{font-size:20px;font-weight:700;color:var(--dbrown);letter-spacing:3px;text-shadow:0 1px 0 rgba(255,255,255,.6)}
+.header h1{font-size:20px;font-weight:700;color:var(--dbrown);letter-spacing:3px;text-shadow:0 1px 0 rgba(255,255,255,.6);font-family:'Lora',var(--font)}
 .header .sub{font-size:11px;color:var(--tlight);margin-top:2px;letter-spacing:2px}
 .header::after{
   content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;
@@ -69,7 +73,6 @@ body::before{
   position:fixed;bottom:0;left:50%;transform:translateX(-50%);
   width:100%;max-width:520px;z-index:100;
   display:flex;background:rgba(254,252,247,.96);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border-top:1px solid var(--bdl);
   padding:6px 0 calc(6px + var(--safe-b));
   box-shadow:0 -2px 20px rgba(77,63,47,.06);
@@ -86,30 +89,33 @@ body::before{
 .nav-item:active .ni{transform:scale(.9)}
 
 /* pages */
-.page{display:none;flex:1;padding:10px 12px;animation:fadeIn .25s ease}
+.page{display:none;flex:1;padding:12px 14px;animation:fadeIn .2s ease}
 .page.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* cards */
 .card{
   background:var(--card);border-radius:var(--radius);padding:16px;
-  box-shadow:var(--shadow);margin-bottom:10px;border:1px solid var(--bdl);
+  box-shadow:0 1px 2px rgba(77,63,47,.02),0 2px 12px rgba(77,63,47,.04);
+  margin-bottom:10px;border:1px solid var(--bdl);
   position:relative;overflow:hidden;
+  transition:box-shadow .25s ease;
 }
+.card:focus-within{box-shadow:0 1px 3px rgba(77,63,47,.03),0 6px 24px rgba(132,151,116,.1)}
 .card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--green),var(--accent),var(--green),transparent);
-  opacity:.3;border-radius:1px 1px 0 0;
+  opacity:.25;border-radius:1px 1px 0 0;
 }
 .card>.card-t{font-size:15px;font-weight:700;color:var(--dgreen);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .card>.card-t::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--bdl),transparent)}
 
 /* sub-nav */
-.sub-nav{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
+.sub-nav{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
 .sub-nav button{
-  padding:7px 14px;border-radius:18px;font-size:12px;border:none;cursor:pointer;
-  background:var(--bg);color:var(--tlight);font-family:var(--font);
-  transition:all .2s;-webkit-tap-highlight-color:transparent;
+  padding:9px 16px;border-radius:20px;font-size:13px;border:none;cursor:pointer;
+  background:var(--bg);color:var(--tlight);font-family:var(--font);min-height:40px;
+  transition:all .2s ease;-webkit-tap-highlight-color:transparent;
 }
 .sub-nav button.active{background:var(--lgreen);color:var(--dgreen);font-weight:600;box-shadow:0 2px 8px rgba(132,151,116,.12)}
 
@@ -175,8 +181,15 @@ body::before{
   border-radius:50%;margin:0 auto;transition:all .8s ease;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 30px rgba(132,151,116,.2),0 4px 20px rgba(77,63,47,.08);
+  position:relative;
 }
-.breath-circle .label{color:#fff;font-size:18px;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.breath-circle::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid rgba(132,151,116,.15);opacity:0;transition:opacity .4s;
+}
+.breath-circle.active-glow::after{opacity:1;animation:breathGlow 2s ease-in-out infinite}
+@keyframes breathGlow{0%,100%{inset:-6px;opacity:.3}50%{inset:-14px;opacity:.08}}
+.breath-circle .label{color:#fff;font-size:18px;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.1);position:relative;z-index:1}
 
 /* ── MOOD ── */
 .mood-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
@@ -227,9 +240,9 @@ body::before{
 /* toast */
 .toast{
   position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:rgba(77,63,47,.9);color:#fff;padding:12px 24px;
-  border-radius:20px;font-size:14px;z-index:999;pointer-events:none;
-  opacity:0;transition:opacity .3s;
+  background:rgba(77,63,47,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  color:#fff;padding:12px 24px;border-radius:20px;font-size:14px;z-index:999;pointer-events:none;
+  opacity:0;transition:opacity .25s ease;box-shadow:0 8px 32px rgba(77,63,47,.15);
 }
 .toast.show{opacity:1}
 
@@ -274,6 +287,25 @@ body::before{
   width:28px;height:28px;border-radius:50%;background:var(--green);
   color:#fff;font-size:13px;font-weight:700;margin-right:8px;
 }
+.book-card{
+  background:linear-gradient(135deg,#fefcf7,#f7f3e8);
+  border-radius:16px;padding:16px;margin-bottom:10px;
+  border:1px solid rgba(155,139,116,.15);cursor:pointer;transition:all .2s;
+  box-shadow:0 2px 12px rgba(77,63,47,.04);
+}
+.book-card:active{transform:scale(.98);box-shadow:0 4px 16px rgba(155,139,116,.12)}
+.book-card .book-fw{
+  font-size:12px;color:var(--dgreen);background:var(--lgreen);
+  display:inline-block;padding:4px 10px;border-radius:20px;margin-top:8px;
+}
+.takeaway-chip{
+  display:inline-block;background:rgba(212,184,122,.15);color:#8b6914;
+  font-size:11px;padding:2px 8px;border-radius:10px;margin-top:4px;
+}
+
+/* focus-visible */
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:4px}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 
 @media(min-width:600px){
   .app{border-left:1px solid var(--bdl);border-right:1px solid var(--bdl)}
@@ -290,12 +322,7 @@ body::before{
   .heal-emotion-item .ei{font-size:30px}
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script>
-var SUPABASE_URL = "https://eezdzqgrkqdnwnamnlee.supabase.co";
-var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlemR6cWdya3FkbnduYW1ubGVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3MDk2OTIsImV4cCI6MjA5NTI4NTY5Mn0.H37OejaG0qoV8Ze9l-W1vTLv3sLCzdDQWj9fPLtn9SI";
-var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-</script>
+<!-- Supabase loaded asynchronously at end of body — no render blocking -->
 </head>
 <body>
 <!-- floating decorations -->
@@ -312,26 +339,57 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   </div>
 
   <!-- ═══════════ HOME ═══════════ -->
-  <div class="page active" id="page-home">
-    <div style="padding:6px 0">
-      <div class="greeting" id="greeting"></div>
-      <div class="greeting-sub" id="greeting-sub"></div>
+  <!-- ═══════════ TODAY ═══════════ -->
+  <div class="page active" id="page-today">
+    <!-- Date Navigator -->
+    <div class="card" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 14px">
+      <button class="btn btn-o btn-s" onclick="TODAY.goDay(-1)">◀</button>
+      <span style="font-size:16px;font-weight:700;color:var(--dbrown);cursor:pointer" id="td-date-label" onclick="TODAY.pickDate()">今天</span>
+      <button class="btn btn-o btn-s" onclick="TODAY.goDay(1)">▶</button>
+      <input type="date" id="td-date-picker" style="display:none;position:absolute" onchange="TODAY.onDatePick()">
     </div>
 
-    <div class="streak-row" id="streak-row"></div>
-
-    <div class="quick-grid">
-      <button class="quick-item" onclick="switchTab('focus')"><span class="qi">🍅</span>专注</button>
-      <button class="quick-item" onclick="switchTab('journal');J.switchSub('mood')"><span class="qi">☀</span>心情</button>
-      <button class="quick-item" onclick="switchTab('journal');J.switchSub('gratitude')"><span class="qi">🙏</span>感恩</button>
-      <button class="quick-item" onclick="switchTab('focus');F.switchSub('breathing')"><span class="qi">🌬</span>呼吸</button>
+    <!-- Daily Awakening -->
+    <div class="card" id="td-awakening" style="cursor:pointer" onclick="TODAY.nextAwakening()">
+      <div style="font-size:12px;color:var(--tlight);margin-bottom:4px">🌅 每日觉醒</div>
+      <div style="font-size:15px;font-weight:600;color:var(--dbrown);line-height:1.7;margin-bottom:6px" id="td-aw-quote"></div>
+      <div style="font-size:13px;color:var(--text);line-height:1.8;white-space:pre-line" id="td-aw-content"></div>
+      <div style="font-size:11px;color:var(--tmuted);margin-top:4px" id="td-aw-source"></div>
     </div>
 
-    <div class="daily-card" id="daily-card"></div>
+    <!-- Mood + Diary (merged) -->
+    <div class="card">
+      <div style="font-size:15px;font-weight:700;color:var(--dgreen);margin-bottom:8px">今日心情</div>
+      <div class="mood-btns" id="td-mbtns">
+        <button class="mood-btn" onclick="TODAY.setMood(1)" style="background:#ffe8e0">😢</button>
+        <button class="mood-btn" onclick="TODAY.setMood(2)" style="background:#ffecd6">😕</button>
+        <button class="mood-btn" onclick="TODAY.setMood(3)" style="background:#fff9e6">😐</button>
+        <button class="mood-btn" onclick="TODAY.setMood(4)" style="background:#e6f0df">😀</button>
+        <button class="mood-btn" onclick="TODAY.setMood(5)" style="background:#d4e5cb">😊</button>
+      </div>
+      <div style="margin:6px 0;font-size:13px;color:var(--tlight)" id="td-mood-label"></div>
+      <textarea class="textarea" id="td-diary" rows="4" placeholder="今天想记录什么？任何想法、感受、故事..."></textarea>
+    </div>
 
+    <!-- Gratitude -->
+    <div class="card">
+      <div style="font-size:15px;font-weight:700;color:var(--dgreen);margin-bottom:8px">🙏 今日感恩</div>
+      <div style="font-size:11px;color:var(--tlight);margin-bottom:8px">每天写下 3 件值得感恩的小事</div>
+      <input class="input" id="td-g1" placeholder="① ..." style="margin-bottom:4px">
+      <input class="input" id="td-g2" placeholder="② ..." style="margin-bottom:4px">
+      <input class="input" id="td-g3" placeholder="③ ...">
+    </div>
+
+    <!-- Actions -->
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="btn btn-p" style="flex:1" onclick="TODAY.save()">💾 保存</button>
+      <button class="btn btn-o" style="flex:1" onclick="TODAY.exportDay()">📤 导出今日</button>
+    </div>
+
+    <!-- Mood trend mini -->
     <div class="card" style="margin-top:10px">
-      <div class="card-t">📊 今日概览</div>
-      <div style="display:flex;gap:8px;text-align:center" id="today-overview"></div>
+      <div class="card-t">📊 心情趋势</div>
+      <div style="overflow-x:auto"><svg id="td-chart" width="100%" height="140" viewBox="0 0 400 140"></svg></div>
     </div>
   </div>
 
@@ -345,7 +403,7 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     <!-- Pomodoro -->
     <div id="focus-pomo">
       <div class="card" style="text-align:center">
-        <div class="ring-wrap" id="rw">
+        <div class="ring-wrap" id="rw" style="cursor:pointer" onclick="F.togglePomo()">
           <svg width="100%" height="100%" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="88" fill="none" stroke="var(--bdl)" stroke-width="12"/>
             <circle id="ring" cx="100" cy="100" r="88" fill="none" stroke="var(--green)" stroke-width="12" stroke-linecap="round" stroke-dasharray="553" stroke-dashoffset="0"/>
@@ -369,7 +427,7 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     <!-- Breathing -->
     <div id="focus-breathing" style="display:none">
       <div class="card" style="text-align:center">
-        <div class="breath-circle" id="bc" style="width:120px;height:120px;background:var(--green)"><span class="label">准备</span></div>
+        <div class="breath-circle" id="bc" style="width:120px;height:120px;background:var(--green);cursor:pointer" onclick="F.toggleBreath()"><span class="label">准备</span></div>
         <div style="margin:14px 0 4px;font-size:17px;font-weight:600;color:var(--dbrown)" id="bphase">点击开始，跟随引导呼吸</div>
         <div style="font-size:12px;color:var(--tlight);margin-bottom:8px" id="bcycle"></div>
         <div style="display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap">
@@ -383,142 +441,6 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
           <button class="btn btn-o btn-s" onclick="F.resetBreath()">↺ 重置</button>
         </div>
         <div style="margin-top:8px;font-size:11px;color:var(--tlight)" id="bdesc">激活副交感神经，帮助快速放松</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════ JOURNAL ═══════════ -->
-  <div class="page" id="page-journal">
-    <div class="sub-nav">
-      <button class="active" id="js-mood" onclick="J.switchSub('mood')">☀ 心情</button>
-      <button id="js-gratitude" onclick="J.switchSub('gratitude')">🙏 感恩</button>
-      <button id="js-diary" onclick="J.switchSub('diary')">📖 日记</button>
-      <button id="js-timeline" onclick="J.switchSub('timeline')">📋 回顾</button>
-    </div>
-
-    <!-- Mood -->
-    <div id="j-mood">
-      <div class="card" style="text-align:center">
-        <div style="font-size:16px;font-weight:700;color:var(--dgreen);margin-bottom:8px">今日心情</div>
-        <div class="mood-btns" id="mbtns">
-          <button class="mood-btn" onclick="J.selectMood(1)" style="background:#ffe8e0">😢</button>
-          <button class="mood-btn" onclick="J.selectMood(2)" style="background:#ffecd6">😕</button>
-          <button class="mood-btn" onclick="J.selectMood(3)" style="background:#fff9e6">😐</button>
-          <button class="mood-btn" onclick="J.selectMood(4)" style="background:#e6f0df">😀</button>
-          <button class="mood-btn" onclick="J.selectMood(5)" style="background:#d4e5cb">😊</button>
-        </div>
-        <div style="margin:8px 0;font-size:13px;color:var(--tlight)" id="mlabel"></div>
-        <textarea class="textarea" id="mnote" rows="2" placeholder="此刻想说的话..."></textarea>
-        <button class="btn btn-p" style="width:100%;margin-top:8px" onclick="J.saveMood()">💾 记录心情</button>
-      </div>
-      <div class="card">
-        <div class="card-t">📊 心情趋势</div>
-        <div style="overflow-x:auto"><svg id="mchart" width="100%" height="160" viewBox="0 0 400 160"></svg></div>
-      </div>
-    </div>
-
-    <!-- Gratitude -->
-    <div id="j-gratitude" style="display:none">
-      <div class="card">
-        <div style="text-align:center;margin-bottom:10px">
-          <div style="font-size:16px;font-weight:700;color:var(--dgreen)">今日感恩</div>
-          <div style="font-size:11px;color:var(--tlight)">每天写下 3 件值得感恩的小事</div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px">
-          <button class="btn btn-o btn-s" onclick="J.gratPrev()">◀</button>
-          <span style="font-size:14px;font-weight:700;color:var(--dbrown)" id="gdate"></span>
-          <button class="btn btn-o btn-s" onclick="J.gratNext()">▶</button>
-          <button class="btn btn-o btn-s" onclick="J.gratToday()">📅 今天</button>
-        </div>
-        <div id="gents"></div>
-        <button class="btn btn-p" style="width:100%;margin-top:6px" onclick="J.saveGrat()">💾 保存</button>
-        <button class="btn btn-o btn-s" style="width:100%;margin-top:6px" onclick="J.randomGrat()">🎲 随机回顾</button>
-        <div id="grev" style="margin-top:8px;font-size:13px;line-height:1.8;white-space:pre-line;padding:10px;background:var(--bg);border-radius:10px"></div>
-      </div>
-    </div>
-
-    <!-- Diary/Free Writing -->
-    <div id="j-diary" style="display:none">
-      <div class="card">
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
-          <button class="btn btn-o btn-s" onclick="J.diaryPrev()">◀</button>
-          <span style="font-size:14px;font-weight:700;color:var(--dbrown)" id="ddate"></span>
-          <button class="btn btn-o btn-s" onclick="J.diaryNext()">▶</button>
-          <button class="btn btn-o btn-s" onclick="J.diaryToday()">📅 今天</button>
-        </div>
-        <textarea class="textarea" id="dcontent-inp" rows="14" placeholder="自由书写，记录今天的所思所想...&#10;&#10;提示：可以写下发生的事、情绪变化、收获感悟、明天的计划..."></textarea>
-        <button class="btn btn-p" style="width:100%;margin-top:8px" onclick="J.saveDiary()">💾 保存日记</button>
-        <div id="dstatus" style="font-size:12px;color:var(--green);margin-top:4px"></div>
-      </div>
-    </div>
-
-    <!-- Timeline Review -->
-    <div id="j-timeline" style="display:none">
-      <div class="card">
-        <div class="card-t">📋 记录回顾</div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px">
-          <button class="btn btn-o btn-s" onclick="J.timelinePrev()">◀</button>
-          <span style="font-size:14px;font-weight:700;color:var(--dbrown)" id="tdate"></span>
-          <button class="btn btn-o btn-s" onclick="J.timelineNext()">▶</button>
-          <button class="btn btn-o btn-s" onclick="J.timelineToday()">📅 今天</button>
-        </div>
-        <div id="tcontent"></div>
-        <div style="margin-top:12px"><div style="font-size:13px;font-weight:700;color:var(--dgreen);margin-bottom:6px">📅 最近记录</div><div id="tdates"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════ GROWTH ═══════════ -->
-  <div class="page" id="page-growth">
-    <div class="sub-nav">
-      <button class="active" id="gs-books" onclick="G2.switchSub('books')">📖 书架</button>
-      <button id="gs-skills" onclick="G2.switchSub('skills')">💡 阅读法</button>
-      <button id="gs-zen" onclick="G2.switchSub('zen')">🪷 觉知</button>
-    </div>
-
-    <!-- Books -->
-    <div id="g-books">
-      <div class="card">
-        <input class="input" id="book-title" placeholder="书名" style="margin-bottom:6px">
-        <div style="display:flex;gap:6px;margin-bottom:6px">
-          <input class="input" id="book-author" placeholder="作者" style="flex:1">
-          <select id="book-status" style="padding:8px 10px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;font-family:var(--font);background:var(--bg);color:var(--text);flex:1">
-            <option value="want">📋 想读</option><option value="reading">📖 在读</option><option value="done">✅ 已读</option>
-          </select>
-        </div>
-        <input class="input" id="book-progress" placeholder="进度 (如: 120/300页)" style="margin-bottom:6px">
-        <textarea class="textarea" id="book-note" rows="2" placeholder="读书笔记..." style="margin-bottom:8px"></textarea>
-        <div style="display:flex;gap:6px">
-          <button class="btn btn-p" style="flex:1" onclick="G2.addBook()">➕ 添加</button>
-          <button class="btn btn-o btn-s" onclick="G2.clearBookForm()">清空</button>
-        </div>
-      </div>
-      <div id="book-list"></div>
-    </div>
-
-    <!-- Reading Skills -->
-    <div id="g-skills" style="display:none">
-      <div class="card">
-        <div id="skills-list"></div>
-        <div id="sdetail" style="margin-top:12px;padding:16px;background:linear-gradient(135deg,var(--lgreen),#f5f7f0);border-radius:12px;font-size:14px;line-height:2;white-space:pre-line;border:1px solid rgba(132,151,116,.1)"></div>
-      </div>
-    </div>
-
-    <!-- Zen/Awakening -->
-    <div id="g-zen" style="display:none">
-      <div class="card" style="text-align:center">
-        <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--lgreen),#e0e8d5);box-shadow:0 4px 20px rgba(132,151,116,.15),inset 0 1px 0 rgba(255,255,255,.5);font-size:40px" id="zemoji">🍵</div>
-        <div style="font-size:16px;font-weight:700;color:var(--dgreen);margin:10px 0 4px" id="ztitle"></div>
-        <div style="font-size:14px;line-height:2;white-space:pre-line;color:var(--dbrown);padding:0 4px" id="zcontent"></div>
-        <div style="display:flex;gap:4px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-          <button class="btn btn-o btn-s" onclick="G2.zenPrev()">◀ 上一个</button>
-          <button class="btn btn-s" style="background:var(--accent);color:#fff" onclick="G2.zenRandom()">🎲 随机</button>
-          <button class="btn btn-o btn-s" onclick="G2.zenNext()">下一个 ▶</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-t">🌱 日常觉察练习</div>
-        <div id="atips"></div>
       </div>
     </div>
   </div>
@@ -541,7 +463,7 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         <div id="chat-actions" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"></div>
         <div style="display:flex;gap:6px;margin-top:8px">
           <button class="btn btn-o btn-s" onclick="H2.resetChat()">🔄 重新开始</button>
-          <button class="btn btn-l" onclick="switchTab('journal');J.switchSub('diary')">📖 去日记记录感悟 →</button>
+          <button class="btn btn-l" onclick="switchTab('today')">📖 去今日记录感悟 →</button>
         </div>
       </div>
     </div>
@@ -588,6 +510,25 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       <div style="font-size:12px;color:var(--tlight)">陪你疗愈、成长、觉醒</div>
     </div>
 
+    <div class="card">
+      <div class="card-t">🎨 外观设置</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:12px;color:var(--tlight);margin-bottom:4px">字体</div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-o btn-s font-opt active" data-font="default" onclick="P2.setFont('default')">系统默认</button>
+          <button class="btn btn-o btn-s font-opt" data-font="serif" onclick="P2.setFont('serif')">衬线体</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--tlight);margin-bottom:4px">字号</div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-o btn-s size-opt" data-size="s" onclick="P2.setSize('s')">小</button>
+          <button class="btn btn-o btn-s size-opt active" data-size="m" onclick="P2.setSize('m')">中</button>
+          <button class="btn btn-o btn-s size-opt" data-size="l" onclick="P2.setSize('l')">大</button>
+        </div>
+      </div>
+    </div>
+
     <div class="stat-grid" id="stat-grid"></div>
 
     <div class="card">
@@ -616,7 +557,7 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     </div>
 
     <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="btn btn-o" style="flex:1" onclick="exportData()">📥 导出数据</button>
+      <button class="btn btn-o" style="flex:1" onclick="P2.exportAll()">📥 导出全部</button>
       <button class="btn btn-o" style="flex:1" onclick="importData()">📤 导入数据</button>
     </div>
     <div style="text-align:center;margin:16px 0 24px;font-size:11px;color:var(--tmuted)">v2.0 · 用心陪伴每一天</div>
@@ -624,17 +565,31 @@ var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   <!-- Bottom Nav -->
   <nav class="bottom-nav" id="bottom-nav">
-    <button class="nav-item active" data-tab="home"><span class="ni">🏠</span>首页</button>
-    <button class="nav-item" data-tab="focus"><span class="ni">⏱</span>专注</button>
-    <button class="nav-item" data-tab="journal"><span class="ni">✍</span>记录</button>
-    <button class="nav-item" data-tab="growth"><span class="ni">🌱</span>成长</button>
-    <button class="nav-item" data-tab="healing"><span class="ni">🕊</span>疗愈</button>
+    <button class="nav-item active" data-tab="today"><span class="ni">📅</span>今日</button>
+    <button class="nav-item" data-tab="focus"><span class="ni">🍅</span>专注</button>
+    <button class="nav-item" data-tab="healing"><span class="ni">💚</span>疗愈</button>
     <button class="nav-item" data-tab="profile"><span class="ni">👤</span>我的</button>
   </nav>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
+// ── Supabase 异步加载（5 秒超时，不阻塞页面渲染）──
+var SUPABASE_URL = "https://eezdzqgrkqdnwnamnlee.supabase.co";
+var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlemR6cWdya3FkbnduYW1ubGVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3MDk2OTIsImV4cCI6MjA5NTI4NTY5Mn0.H37OejaG0qoV8Ze9l-W1vTLv3sLCzdDQWj9fPLtn9SI";
+var sb = null;
+(function loadSupabaseAsync(){
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+  s.onload = function(){
+    try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch(e) { console.warn('Supabase init failed', e); }
+  };
+  s.onerror = function(){ console.warn('Supabase CDN unreachable, offline mode'); };
+  document.head.appendChild(s);
+  // 5 秒兜底：超时就放弃，App 以离线模式运行
+  setTimeout(function(){ if(!sb) console.warn('Supabase 加载超时，使用离线模式'); }, 5000);
+})();
+
 // ═══════════════ STORAGE ═══════════════
 var S={
   get:function(k,d){try{var v=localStorage.getItem('mh_'+k);return v?JSON.parse(v):d}catch(e){return d}},
@@ -681,7 +636,7 @@ async function syncFromServer(cb){
     if(cb)cb('server');
   }catch(e){console.log('sync err:',e.message);if(cb)cb('error');}
 }
-async function _getUid(){ var s=(await sb.auth.getSession()).data?.session; return s?s.user.id:null; }
+async function _getUid(){ if(!sb)return null; try{var s=(await sb.auth.getSession()).data?.session;return s?s.user.id:null}catch(e){return null} }
 
 async function pushLocalToServer(){
   var uid=await _getUid();if(!uid)return;
@@ -731,10 +686,8 @@ function switchTab(name){
   var page=document.getElementById('page-'+name);if(page)page.classList.add('active');
   var nav=document.querySelector('[data-tab="'+name+'"]');if(nav)nav.classList.add('active');
   window.scrollTo(0,0);
-  if(name==='home')H.render();
+  if(name==='today')TODAY.init();
   if(name==='focus')F.renderPomo();
-  if(name==='journal')J.renderMoodChart();
-  if(name==='growth')G2.renderBooks();
   if(name==='healing')H2.switchSub('chat');
   if(name==='profile')P2.render();
 }
@@ -867,9 +820,9 @@ var F={
     document.getElementById('bdesc').textContent=this.breath.getP().desc;
   },
   toggleBreath:function(){
-    var b=this.breath,self=this;
-    if(b.running){b.running=false;document.getElementById('btoggle').textContent='▶ 继续';clearInterval(b.timer)}
-    else{b.running=true;document.getElementById('btoggle').textContent='⏸ 暂停';b.timer=setInterval(function(){self.tickBreath()},1000)}
+    var b=this.breath,self=this,c=document.getElementById('bc');
+    if(b.running){b.running=false;document.getElementById('btoggle').textContent='▶ 继续';clearInterval(b.timer);c.classList.remove('active-glow')}
+    else{b.running=true;document.getElementById('btoggle').textContent='⏸ 暂停';b.timer=setInterval(function(){self.tickBreath()},1000);c.classList.add('active-glow')}
   },
   tickBreath:function(){
     var b=this.breath,p=b.getP(),dur=p.durs[b.phase],label=p.labels[b.phase],ph=p.phases[b.phase];
@@ -891,7 +844,7 @@ var F={
           document.getElementById('bphase').textContent='练习完成！感觉好点了吗？🌸';
           document.getElementById('bcycle').textContent='';
           c.style.width='120px';c.style.height='120px';c.querySelector('.label').textContent='完成';
-          c.style.background='var(--green)';vibrate(300);return;
+          c.style.background='var(--green)';c.classList.remove('active-glow');vibrate(300);return;
         }
       }
     }
@@ -903,6 +856,7 @@ var F={
     document.getElementById('bcycle').textContent='';
     var c=document.getElementById('bc');c.style.width='120px';c.style.height='120px';
     c.querySelector('.label').textContent='准备';c.style.background='var(--green)';
+    c.classList.remove('active-glow');
     document.getElementById('bdesc').textContent=b.getP().desc;
   }
 };
@@ -1041,6 +995,225 @@ var J={
   timelinePrev:function(){var d=new Date(this.tDate);d.setDate(d.getDate()-1);this.tDate=d.toISOString().slice(0,10);this.renderTimeline()},
   timelineNext:function(){var d=new Date(this.tDate);d.setDate(d.getDate()+1);this.tDate=d.toISOString().slice(0,10);this.renderTimeline()},
   timelineToday:function(){this.tDate=today();this.renderTimeline()}
+};
+
+// ═══════════════ TODAY PAGE ═══════════════
+var AWAKENINGS=[
+  {quote:'所有的大人最初都是孩子，但很少有人记得。',content:'《小王子》这句话不只是说给孩子听的。成年人的问题是：我们记得规则、记得 deadline、记得别人的期待，却忘了自己曾经对世界的好奇。今天试试用孩子的眼光看一件事——一棵树的形状、一朵云的颜色、一个人的表情。你会发现，简单反而最真实。',source:'《小王子》安托万·德·圣-埃克苏佩里'},
+  {quote:'重要的不是被给予了什么，而是如何使用被给予的东西。',content:'阿德勒这句话是一个解放宣言。你的出身、身高、过去的经历——这些都是被给予的。但赋予它们什么意义，是你选的。有人把苦难变成武器，有人把苦难变成智慧。不是发生了什么决定了你，是你如何解释发生了什么。',source:'《被讨厌的勇气》岸见一郎'},
+  {quote:'我们听到的一切都是观点，不是事实。我们看到的一切都是视角，不是真相。',content:'马可·奥勒留在《沉思录》中写下的这句话提醒每一个容易被别人影响的人：别人的评价，是他们的视角，不是你的定义。一个人说你不好，那是他站在自己角度看到的。你不必把别人的视角当作自己的真相。',source:'《沉思录》马可·奥勒留'},
+  {quote:'生活不是等待暴风雨过去，而是学会在雨中跳舞。',content:'我们总在等：等忙完这阵、等心情好了、等条件具备了。可是生活就在等待中过去了。不是某一天才开始，就是此刻——带着所有的不完美、不安和不确定，开始你想做的事。',source:'维维安·格林'},
+  {quote:'幸福不是目标，而是一种副产品。',content:'埃莉诺·罗斯福观察到的这个道理很多人都错过了。幸福不能直接追求——越追它越远。幸福是在你全情投入一件事、关心一个人、认真过一天的时候，悄悄从旁边生长出来的。不要追幸福，追你真正在意的事，幸福会跟着来。',source:'埃莉诺·罗斯福'},
+  {quote:'你之所以无法改变，是因为自己不断下着不改变的决心。',content:'哲人对年轻人的这句话像一面镜子。我们嘴上说想改变，但每一个"明天再说""等条件合适""道理都懂就是做不到"，都是在给自己下不改变的决心。改变不需要完美的时机，只需要一个"现在就开始"的决定。',source:'《被讨厌的勇气》岸见一郎'},
+  {quote:'当我接受我本来的样子时，我就能改变了。',content:'卡尔·罗杰斯这句话说透了一切疗愈的本质。我们以为改变是变成更好的自己，但真正的改变始于接受此刻的自己。不是接受后就放弃了，而是接受后才自由了——你不再花力气对抗自己，所有的力都可以用来向前走。',source:'《成为一个人》卡尔·罗杰斯'},
+  {quote:'爱是理解的别名。',content:'泰戈尔这句话七个字说清了关系的核心。我们以为爱是激情、是付出、是为对方好。但真正让人感到被爱的，是被理解。一个人努力理解你的感受，不评判、不打断、不急着给建议——那才是爱的全部。',source:'泰戈尔'},
+  {quote:'每天反复做的事情造就了我们。优秀，不是一种行为，而是一种习惯。',content:'亚里士多德这句话是所有自我改变的基础。你不是某一天突然变成谁，而是你每天做的小事积累出了你是谁。太关注结果而忽略过程，就容易急功近利。关注每一天做对的微小动作，结果会自然到来。',source:'亚里士多德'},
+  {quote:'每一个指责背后，都有一个未被满足的需要在哭泣。',content:'当有人对你发脾气，当伴侣莫名烦躁，当孩子无理取闹——试着不要回应表面的攻击，而去寻找背后的需要。每个人都只是在用自己的方式（即使是笨拙的、伤害人的方式）表达"我需要被尊重、被看见、被爱"。',source:'《非暴力沟通》马歇尔·卢森堡'},
+  {quote:'树木爱得深沉。它们扎根大地，不追逐风的方向。',content:'如果你感到焦虑，想象自己是一棵树。风来了，枝叶会摇，但根不动。树不会说风太大了我受不了，树只是在那里，稳稳地。你的根是什么？是那些不随外界变化而改变的东西——你的价值观、你真正爱的人。',source:'禅意散文'},
+  {quote:'人生最大的谎言，就是此时此刻之外还有一个更值得活的人生。',content:'我们总在等——等考上、等升职、等还完房贷、等孩子长大。好像有一个真正的人生在未来等着我们。但人生不在未来，人生就是现在——在喝这杯水、回这条消息、过这一分钟。不要等待，活着。',source:'《被讨厌的勇气》岸见一郎'},
+  {quote:'你不是你的思想，你是观察思想的人。',content:'正念冥想的核心就这一句话。你脑子里的焦虑声音、自我批评的声音、灾难化想象的声音——那些都不是你。你是那个能听见这些声音的人。当你意识到"我正在想"，你就从思想中退了一步，那一刻，你是自由的。',source:'《当下的力量》埃克哈特·托利'},
+  {quote:'在刺激和反应之间，有一个空间。在那个空间里，有我们选择反应的自由和力量。',content:'弗兰克尔在集中营里发现了这个真理：你可以被剥夺一切，但没有人能剥夺你选择如何回应的自由。别人说一句话，你可以自动愤怒，也可以在听到和回应之间停顿片刻。那个片刻，就是你的力量所在。',source:'《活出生命的意义》维克多·弗兰克尔'},
+  {quote:'改变自己是神，改变别人是神经病。',content:'最消耗人的事情就是试图改变伴侣、孩子、父母、朋友。所有关系中最痛苦的人，都是那些想让别人变成自己想要的样子的人。记住课题分离：你能不能改变自己是你的课题，别人改不改变是别人的课题。',source:'佚名智慧格言'},
+  {quote:'真正的发现之旅不在于寻找新的风景，而在于拥有新的眼睛。',content:'普鲁斯特这句话适用于每一个感到无聊的时刻。不需要去一个新地方才能感到新鲜。换一双眼睛看同样的街道、同样的人、同样的生活——把理所当然变成奇迹，每一刻都可以是新的。',source:'马塞尔·普鲁斯特'},
+  {quote:'一个人知道自己为什么而活，就可以忍受任何一种生活。',content:'尼采。找到你的为什么——它不需要宏大，可以是"我想让孩子看到什么是勇敢"，可以是"我想看看自己能做到什么程度"。当你知道为什么，过程中所有的苦都变成了值得的苦。',source:'尼采'},
+  {quote:'恐惧敲门，勇气去开门，结果门外什么都没有。',content:'大多数我们焦虑的事情，根本不会发生。我们的头脑擅长制造恐惧——最坏的情况、别人的评价、未来的灾难。但它们敲门的时候，不要怕。打开门看看，十有八九，外面什么都没有。',source:'禅语'},
+  {quote:'种一棵树最好的时间是十年前，其次是现在。',content:'不管你想做什么——学一个技能、修复一段关系、改变一个习惯——最好的开始时间是十年前。但现在排在第二。不要因为晚了十年就不开始。十年后你会感谢今天开始的自己。',source:'中国谚语'},
+  {quote:'幸福取决于我们把生活解释成什么。',content:'阿德勒这句话和认知行为疗法完全一致。不是你遇到了什么决定了你的感受，而是你怎么解释它。被批评等于"我太差劲了"还是"对方在意这件事所以愿意说出来"？同一个事实，不同的解释，不同的情绪体验。',source:'阿尔弗雷德·阿德勒'},
+  {quote:'不要让你不能做的事情，妨碍你能做的事情。',content:'伍登教练这句话是行动主义的精髓。我们常常因为"我做不到XXX"就放弃了"我能做YYY"。不能跑步30分钟？走10分钟也好的。不能写一篇完美文章？先写一段也好的。不要让不能阻止能。',source:'约翰·伍登'},
+  {quote:'我们生活在一个时刻，而不是一整天里。',content:'忘记今天要完成多少事吧。就这个时刻——你正在做什么？把它做好。人生的质量不是按天算的，是按这个时刻算的。每一个感到专注的时刻，都是你真正活着的时刻。',source:'正念格言'},
+  {quote:'人与人之间最远的距离，是我站在你面前，你却没有看见我。',content:'你有没有这样的经历：和别人说话时，对方在看手机、在想怎么回应、在等你说完？那感觉就是"我没被看见"。反过来，当有人看着你的眼睛、认真地听、不急着打断——那感觉就是"我被看见了"。今天试着给一个人被看见的体验。',source:'心理治疗共通观察'},
+  {quote:'我们对最坏情况的恐惧，往往比最坏情况本身更糟糕。',content:'焦虑的本质是：我们害怕一个还没发生的事情。你躺在床上想明天的事、想一周后的事、想一年后的事——身体在现在，脑子在未来。这时候需要的是：回到现在。此刻，你的呼吸是平稳的，你是安全的。',source:'认知行为疗法'},
+  {quote:'勇气不是没有恐惧，而是判断有些东西比恐惧更重要。',content:'你不需要不害怕才开始。你只需要决定：我想做的事，比我的恐惧更重要。害怕被拒绝，但还是去说了。害怕失败，但还是去做了。每一次这样做，勇气就长出一点肌肉。',source:'纳尔逊·曼德拉启发'},
+  {quote:'宁静不是没有噪音，而是在噪音中依然平静。',content:'我们不能控制外面的世界——永远有干扰、有坏消息、有别人的意见。但内在的宁静不是靠消除噪音实现的，而是通过在噪音中保持中心练习出来的。每一次你选择不被外界牵着走，就在训练这个能力。',source:'正念冥想教导'},
+  {quote:'我们需要的不是一个新的生活，而是一双新的眼睛。',content:'同样的工作、同样的关系、同样的城市——当你开始留意平时忽略的细节（同事的一个笑容、路边新开的花、咖啡的温度），生活就变了。不是生活在变，是你的注意力在变。而注意力，是你可以控制的。',source:'《心流》启发'},
+  {quote:'每一次说是给不重要的事，就是在说不给真正重要的事。',content:'时间管理的本质不是把更多事塞进一天，而是决定什么不值得你的时间。你今天的时间花在了哪里？有多少是别人觉得重要的事？有多少是你自己真正在意的事？',source:'《深度工作》启发'},
+  {quote:'感谢是最高形式的思考，感恩是惊喜的近亲。',content:'当你刻意寻找值得感谢的事物时，你的大脑会从问题扫描模式切换到资源扫描模式。这不是正能量鸡汤，这是认知重构——你看到的世界，很大程度上是你选择看到的世界。',source:'积极心理学研究'},
+  {quote:'人生不是等待风暴过去，而是学会在雨中起舞。',content:'我们常常以为，等困难过去了、等心情好了、等一切准备就绪了，才开始真正的生活。但生活的真相是：风暴永远不会完全停止。学会在不确定中前行，在焦虑中行动，在不安中依然温柔对待自己——这才是生活的全部艺术。',source:'禅意智慧'}
+];
+
+var TODAY={
+  date:new Date().toISOString().slice(0,10),
+
+  init:function(){
+    this.renderDateLabel();
+    this.loadMood();
+    this.loadDiary();
+    this.loadGratitude();
+    this.loadAwakening();
+    this.drawChart();
+  },
+
+  // ── Date ──
+  goDay:function(delta){
+    var d=new Date(this.date+'T00:00:00');
+    d.setDate(d.getDate()+delta);
+    this.date=d.toISOString().slice(0,10);
+    this.init();
+  },
+
+  renderDateLabel:function(){
+    var d=new Date(this.date+'T00:00:00');
+    var today=new Date().toISOString().slice(0,10);
+    var label='';
+    if(this.date===today)label='今天';
+    else{var m=d.getMonth()+1;var day=d.getDate();label=m+'月'+day+'日';}
+    var w=['日','一','二','三','四','五','六'];
+    label+=' 星期'+w[d.getDay()];
+    var moods=S.get('moods',[]);var self=this;
+    var hasMood=moods.some(function(x){return x.time&&x.time.slice(0,10)===self.date});
+    var hasDiary=S.get('write_'+this.date,'');
+    var hasGrat=S.get('grat_'+this.date,['','','']).join('');
+    if(hasMood||hasDiary||hasGrat)label+=' ●';
+    document.getElementById('td-date-label').textContent=label;
+  },
+
+  pickDate:function(){
+    var inp=document.getElementById('td-date-picker');
+    inp.style.display='block';inp.value=this.date;
+    inp.showPicker();
+  },
+
+  onDatePick:function(){
+    var v=document.getElementById('td-date-picker').value;
+    document.getElementById('td-date-picker').style.display='none';
+    if(v){this.date=v;this.init();}
+  },
+
+  // ── Mood ──
+  _selectedMood:null,
+
+  setMood:function(level){
+    var labels={1:'😢 难过',2:'😕 低落',3:'😐 平静',4:'😀 开心',5:'😊 幸福'};
+    document.getElementById('td-mood-label').textContent='已选：'+labels[level];
+    this._selectedMood=level;
+  },
+
+  loadMood:function(){
+    var self=this;this._selectedMood=null;
+    var moods=S.get('moods',[]);
+    moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===self.date)self._selectedMood=m.level;});
+    if(this._selectedMood){
+      var labels={1:'😢 难过',2:'😕 低落',3:'😐 平静',4:'😀 开心',5:'😊 幸福'};
+      document.getElementById('td-mood-label').textContent='已记录：'+labels[this._selectedMood];
+    }else{
+      document.getElementById('td-mood-label').textContent='';
+    }
+  },
+
+  // ── Diary ──
+  loadDiary:function(){
+    document.getElementById('td-diary').value=S.get('write_'+this.date,'');
+  },
+
+  // ── Gratitude ──
+  loadGratitude:function(){
+    var g=S.get('grat_'+this.date,['','','']);
+    document.getElementById('td-g1').value=g[0]||'';
+    document.getElementById('td-g2').value=g[1]||'';
+    document.getElementById('td-g3').value=g[2]||'';
+  },
+
+  // ── Save ──
+  save:function(){
+    var self=this;
+    if(this._selectedMood){
+      var moods=S.get('moods',[]),found=false;
+      moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===self.date){m.level=self._selectedMood;m.note=m.note||'';found=true;}});
+      if(!found)moods.push({level:this._selectedMood,note:'',time:this.date+'T'+new Date().toTimeString().slice(0,5)});
+      S.set('moods',moods);_push('moods',moods);
+    }
+    var diary=document.getElementById('td-diary').value.trim();
+    if(diary){S.set('write_'+this.date,diary);_push('write_'+this.date,diary);}
+    var g1=document.getElementById('td-g1').value.trim();
+    var g2=document.getElementById('td-g2').value.trim();
+    var g3=document.getElementById('td-g3').value.trim();
+    if(g1||g2||g3){S.set('grat_'+this.date,[g1,g2,g3]);_push('grat_'+this.date,[g1,g2,g3]);}
+    T('已保存');
+    this.renderDateLabel();
+  },
+
+  // ── Awakening ──
+  _awIdx:0,
+
+  loadAwakening:function(){
+    var seed=parseInt(this.date.replace(/-/g,''))%AWAKENINGS.length;
+    this._awIdx=Math.abs(seed);
+    this.renderAwakening();
+  },
+
+  renderAwakening:function(){
+    var a=AWAKENINGS[this._awIdx%AWAKENINGS.length];
+    document.getElementById('td-aw-quote').textContent='"'+a.quote+'"';
+    document.getElementById('td-aw-content').textContent=a.content;
+    document.getElementById('td-aw-source').textContent='—— '+a.source;
+  },
+
+  nextAwakening:function(){
+    this._awIdx=(this._awIdx+1)%AWAKENINGS.length;
+    this.renderAwakening();
+  },
+
+  // ── Export ──
+  exportDay:function(){
+    var lines=[];
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('  心灵驿站 · 记录');
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    var d=new Date(this.date+'T00:00:00');
+    lines.push(d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日');
+    var moods=S.get('moods',[]);var self=this;
+    var todayMood=null;
+    moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===self.date)todayMood=m;});
+    if(todayMood){
+      var labels={1:'😢 难过',2:'😕 低落',3:'😐 平静',4:'😀 开心',5:'😊 幸福'};
+      lines.push('心情：'+labels[todayMood.level]);
+    }
+    lines.push('');
+    var diary=S.get('write_'+this.date,'');
+    if(diary)lines.push(diary);
+    lines.push('');
+    var g=S.get('grat_'+this.date,['','','']);
+    if(g.join('')){
+      lines.push('🙏 感恩：');
+      if(g[0])lines.push('1. '+g[0]);
+      if(g[1])lines.push('2. '+g[1]);
+      if(g[2])lines.push('3. '+g[2]);
+    }
+    lines.push('━━━━━━━━━━━━━━━━━━');
+        var blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='xinling_'+this.date+'.txt';a.click();
+    T('导出完成');
+  },
+
+  // ── Mood chart ──
+  drawChart:function(){
+    var moods=S.get('moods',[]);
+    var svg=document.getElementById('td-chart');if(!svg)return;
+    if(!moods.length){svg.innerHTML='';return;}
+    var days=[],now=new Date();
+    for(var i=13;i>=0;i--){var d=new Date(now);d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10));}
+    var points=[];
+    days.forEach(function(day){
+      var found=null;
+      moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===day)found=m.level;});
+      points.push(found);
+    });
+    var w=400,h=140,pad=30,html='';
+    for(var l=1;l<=5;l++){var y=pad+(h-pad*2)*(1-l/5);html+='<line x1="'+pad+'" y1="'+y+'" x2="'+(w-pad)+'" y2="'+y+'" stroke="var(--bdl)" stroke-width="0.5"/>';}
+    days.forEach(function(day,i){
+      if(i%2===0){var x=pad+(w-pad*2)*i/(days.length-1),d2=new Date(day+'T00:00:00');html+='<text x="'+x+'" y="'+(h-4)+'" text-anchor="middle" font-size="9" fill="var(--tmuted)">'+(d2.getMonth()+1)+'/'+d2.getDate()+'</text>';}
+    });
+    var linePoints='';
+    points.forEach(function(p,i){
+      if(p!==null){var x=pad+(w-pad*2)*i/(points.length-1),y=pad+(h-pad*2)*(1-p/5);linePoints+=(linePoints?' ':'')+x+','+y;}
+    });
+    if(linePoints)html+='<polyline points="'+linePoints+'" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+    points.forEach(function(p,i){
+      if(p!==null){var x=pad+(w-pad*2)*i/(points.length-1),y=pad+(h-pad*2)*(1-p/5);html+='<circle cx="'+x+'" cy="'+y+'" r="4" fill="var(--green)"/><circle cx="'+x+'" cy="'+y+'" r="2" fill="#fff"/>';}
+    });
+    svg.innerHTML=html;
+  }
 };
 
 // ═══════════════ GROWTH (Books + Skills + Zen) ═══════════════
@@ -1262,14 +1435,199 @@ var H2={
     {num:10,title:'非暴力沟通四步法',desc:'来自《非暴力沟通》——在不伤害关系的前提下表达真实需求。',detail:'NVC（非暴力沟通）四要素：\n\n1️⃣ 观察（不评判）\n"当我看到/听到_________"\n→ 只说事实，不加"你总是""你从来"这样的评判\n\n2️⃣ 感受（不压抑）\n"我感到_________"\n→ 命名你的情绪：难过、失望、担心、委屈...\n→ 不要用"我觉得你..."（那是指责不是感受）\n\n3️⃣ 需要（不回避）\n"因为我需要_________"\n→ 找到感受背后的需要：尊重、理解、安全、自主...\n→ 情绪是指向需要的路标\n\n4️⃣ 请求（不命令）\n"你愿意_________吗？"\n→ 具体、可行、给对方选择权\n→ 请求不是要求，接纳"不"的答案\n\n练习：想一个最近的冲突，试着用四步法重新表达。你会发现，同样是说话，爱的语言和暴力的语言，效果完全不同。'}
   ],
   classroom:[
-{num:1,title:'TA沟通分析·三种自我状态',source:'《蛤蟆先生去看心理医生》',content:'这是TA（Transactional Analysis）最核心的概念。每个人内心都有三种自我状态：\n\n👶 儿童自我：你小时候学到的感受和行为模式。当你感到委屈、想讨好、或突然想发脾气时，是内在的"儿童"在说话。蛤蟆先生大部分时间都处在"顺从的儿童"状态。\n\n👨‍🏫 父母自我：你从父母和权威那里复制来的言行。当你开始"你应该...""你不应该..."时，是内在的"父母"在说话。苍鹭指出，蛤蟆内心的"批判型父母"其实是从他严厉的父亲那里学来的。\n\n🧠 成人自我：基于当下事实、理性思考的状态。没有"应该"，只有"是什么"和"我可以做什么"。这是心理咨询帮助人回归的状态。\n\n💡 关键洞察：觉察这三种状态本身就具有疗愈力量。当你在一个情绪中，问自己——"此刻是哪一部分的我在说话？"',exercise:'下次感到强烈情绪时，暂停一下，问自己：此刻是儿童、父母、还是成人在反应？记录下来。'},
-    {num:2,title:'TA沟通分析·人生坐标',source:'《蛤蟆先生去看心理医生》',content:'苍鹭问蛤蟆一个看似简单的问题："蛤蟆，你好吗？"然后画出了四个象限：\n\n四个坐标：\n• 我好，你也好 → 健康的成人状态\n• 我好，你不好 → 自恋型、指责型人格\n• 我不好，你好 → 抑郁型、讨好型人格（蛤蟆的位置）\n• 我不好，你也不好 → 绝望、虚无主义\n\n蛤蟆发现自己一生都在"我不好，你好"的位置上——他总是觉得自己不够好，总在寻求别人的认可。这个信念来自于他童年与严厉父亲的互动。\n\n💡 关键洞察：人生坐标不是在头脑中选择的，而是在童年体验中形成的。但成年后的我们可以重新选择。这不是"积极思维"，而是通过觉察和行动，一点一点建立起新的坐标。',exercise:'画四个象限，静静地感受——最近一周，你在哪个位置待得最久？这个位置是谁帮你形成的？'},
-    {num:3,title:'阿德勒心理学·目的论',source:'《被讨厌的勇气》（阿德勒）',content:'阿德勒心理学最颠覆认知的观点：目的论 vs 原因论。\n\n佛洛伊德（原因论）：过去的创伤造就了现在的我。\n阿德勒（目的论）：我们为了某个"目的"，选择了现在的行为方式。\n\n举个例子：\n一个人说"我因为过去的创伤所以不敢社交"。\n原因论解释：过去的经历导致了现在的恐惧。\n目的论解释：这个人"为了不社交"这个目的，把过去的经历当作理由。\n\n听起来残酷，但这意味着什么？\n👉 如果你不是因为过去而无法改变，而是你"为了不改变"而抓住过去当借口——那么，改变是可能的。\n\n💡 关键洞察：阿德勒说："重要的不是被给予了什么，而是如何使用被给予的东西。"你的人生不是被过去决定的，而是被你赋予过去的意义决定的。',exercise:'找一件你一直想改但认为"没办法"的事。问自己：我在用过去做什么目的？如果放下这个理由，我可以做什么不同的选择？'},
-    {num:4,title:'阿德勒心理学·课题分离',source:'《被讨厌的勇气》（阿德勒）',content:'这是阿德勒心理学中最实用的工具。\n\n🔑 判断原理：这件事的最终后果由谁承担？\n\n• 孩子不写作业 → 后果由孩子承担 → 这是孩子的课题\n• 父母担心孩子 → 这份担心由父母承担 → 父母要面对的是"自己的担心"这个课题\n\n常见的课题混淆：\n• "别人怎么看我" → 别人的课题\n• "我要不要表达观点" → 我的课题\n• "领导会不会满意" → 领导的课题\n• "我已经尽力了" → 我的课题已完成\n\n课题分离不是冷漠，而是——每个人的课题背后，是每个人的自由。把别人的自由还给别人，把自己的自由拿回来。\n\n💡 关键洞察：阿德勒说："不为满足他人的期待而活，别人也不为满足你的期待而活。"这句话需要勇气，也带来解放。',exercise:'列2-3个你最近焦虑的人际关系问题。用"最终后果由谁承担"这个标准，把课题分清楚。写下来：我的课题是___，别人的课题是___。'},
-    {num:5,title:'阿德勒心理学·共同体感觉',source:'《被讨厌的勇气》（阿德勒）',content:'阿德勒认为，所有烦恼都来自人际关系，而所有幸福的根源是"共同体感觉"（Social Interest）。\n\n这包含三个层次：\n\n1. 自我接纳：接纳"此刻做不到的自己"，同时向着能改变的方向努力。不是"我很棒"的自欺，而是"我现在是这样，我可以继续走"。\n\n2. 他人信赖：无条件地相信他人。不是"因为你值得信任所以我相信你"，而是"我选择相信你"。这需要勇气，被背叛的风险存在，但不信任的代价更大。\n\n3. 他者贡献：为共同体做贡献。不是为了被认可，而是因为"我是有用的"这种感觉带来价值感。贡献不一定是大事——给同事倒杯水、认真回复一个帖子，都是贡献。\n\n💡 关键洞察：幸福不是"被爱"或"被认可"，而是"我能爱"和"我能贡献"。当一个人感到自己对共同体有价值时，就不再需要从外界抓取认可。',exercise:'今天做一件不为了被表扬的好事——比如匿名帮助某人、在社区分享有用的信息。体会"不是为了认可"的贡献是什么感觉。'},
-    {num:6,title:'非暴力沟通·爱的语言',source:'《非暴力沟通》（马歇尔·卢森堡）',content:'NVC（Nonviolent Communication）不只是沟通技巧，更是一种看待世界的方式：每个人的语言背后都有一个未被满足的需要。\n\n四要素——观察、感受、需要、请求——看上去简单，但最难的是第一步：区分"观察"和"评判"。\n\n我们习惯说：\n"你总是不尊重我。"（评判）\n→ NVC版："今天会议上你三次打断我的话，我感到难过，因为我需要被尊重。你愿意听完我说完再回应吗？"\n\nNVC的核心信念：\n• 所有攻击都是对需要的悲剧性表达\n• 所有愤怒背后都有一个受伤的需要\n• 当人们听到我们的需要而不是评判时，更容易合作\n\n💡 关键洞察：我们不是在沟通中"妥协"，而是在沟通中"连接"。当你看到自己的需要，也看到对方的需要，解决方案自然会出现。',exercise:'回想最近一次让你愤怒的对话。写下：1）我观察到了什么（只写事实）2）我的感受是什么 3）我有什么需要没被满足 4）我可以提出什么请求？'},
-    {num:7,title:'到底什么在治愈我们？',source:'综合：《也许你该找个人聊聊》',content:'当我们读了很多心理学的书，做了很多练习，到底什么在起作用？\n\n罗杰斯（人本主义创始人）发现，真正有效疗愈的三个条件：\n\n1. 真诚一致（Congruence）：有一个人在真实地面对你，不带面具。当你和这样的人在一起，你也会慢慢变得真实。\n\n2. 无条件积极关注（Unconditional Positive Regard）：有一个人无论你呈现什么样的自己——愤怒的、脆弱的、矛盾的——都接纳你。你不必"够好"才值得被看见。\n\n3. 共情理解（Empathic Understanding）：有一个人努力进入你的世界，用你的眼睛看，用你的心感受。不是"我懂你"的轻率判断，而是"我在试着理解你"的谦卑陪伴。\n\n💡 关键洞察：有时候，疗愈不是发生在"我解决了问题"的那一刻，而是发生在"有一个人在那里，我的痛苦被看到了"的那一刻。被看见，本身就是疗愈的开始。',exercise:'今天，尝试给一个人这三个礼物：真诚地分享一段你的感受，无条件地接纳对方的情绪不急于给建议，试着全然进入对方的世界去理解——不只停留在"我觉得你应该..."。见证一下这有多难，又有多珍贵。'}
-  ],
+  {
+    "id": "b1",
+    "title": "《蛤蟆先生去看心理医生》",
+    "author": "罗伯特·戴博德",
+    "desc": "一本用童话故事讲透心理学的治愈之书。跟随蛤蟆先生的10次心理咨询，理解自己的情绪反应模式，找到走出抑郁的路。",
+    "framework": "三种自我状态 → 人生坐标 → 心理游戏 → 情绪觉察 → 重新选择",
+    "chapters": [
+      {
+        "title": "三种自我状态：你心里住着三个人",
+        "takeaway": "觉察'此刻是谁在说话'，就是改变的开始",
+        "content": "这是TA（沟通分析）心理学最核心的概念。每个人的内心都有三种自我状态，它们交替主导着我们的情绪和行为。\n\n👶 儿童自我状态\n你小时候形成的感受和行为模式。当你感到委屈想哭、想讨好别人、或突然大发脾气时——是内在的'儿童'在说话。\n\n儿童自我又分两种：\n• 顺从的儿童：听话、讨好、压抑自己满足别人\n• 叛逆的儿童：发脾气、顶撞、用愤怒保护自己\n\n蛤蟆先生大部分时间都处在'顺从的儿童'状态——他不敢拒绝别人，总是先道歉，把愤怒都转向了自己。\n\n👨‍🏫 父母自我状态\n你从父母和权威那里复制来的言行。当你开始'你应该...''你不应该...''这都怪你...'时——是内在的'父母'在说话。\n\n父母自我也分两种：\n• 批判型父母：挑剔、指责、高标准严要求\n• 养育型父母：安慰、照顾、给予温暖\n\n蛤蟆内心的'批判型父母'不是对别人，而是对自己——他总在心里骂自己窝囊、没用。这是最消耗人的模式。\n\n🧠 成人自我状态\n基于当下事实、理性思考的状态。没有'你应该'，只有'事实是什么'和'我可以做什么'。\n\n成人的声音是平静的：\n'我现在感到焦虑，因为明天有一个重要会议。我可以花一小时准备一下，然后去散步放松。'\n\n💡 关键洞察：这三种状态本身没有好坏。一个健康的人能在三种状态间自由切换——需要安慰时拥抱内在小孩，需要决断时调用成人理性。问题是：你是否被某一种状态'困住'了？",
+        "exercise": "今天留意3次情绪波动，每次问自己：此刻是'儿童'、'父母'还是'成人'在反应？用手机备忘录记下来。"
+      },
+      {
+        "title": "人生坐标：你在哪个象限看世界？",
+        "takeaway": "人生坐标不是头脑选的，是童年'体验'出来的——但成年后可以重新选",
+        "content": "苍鹭问蛤蟆一个看似简单的问题：'蛤蟆，你好吗？'\n\n然后他在纸上画了两个轴：纵轴是'我好不好'，横轴是'你好不好'。四个象限就此展开：\n\n🟢 我好，你也好\n→ 我相信自己的价值，也相信别人的善意\n→ 遇到问题时：'我们可以一起解决'\n→ 这是健康的成人状态，也是咨询的目标\n\n🔴 我好，你不好\n→ 我永远是对的，错的是别人\n→ '都是你的问题'\n→ 自恋型、指责型人格的底层坐标\n\n🔵 我不好，你好\n→ 我总是不够好，别人都比我强\n→ '对不起，都是我的错'\n→ 抑郁型、讨好型人格的底层坐标。蛤蟆就在这里\n\n⚫ 我不好，你也不好\n→ 世界是灰暗的，一切都没有意义\n→ '做什么都没用'\n→ 绝望、虚无、疏离\n\n蛤蟆发现自己一生都在'我不好，你好'的位置上——总觉得自己不够好，总在寻求别人的认可。这个信念不是他'想'出来的，而是在童年与严厉父亲的互动中'体验'出来的。\n\n💡 关键洞察：苍鹭说：'你在童年决定用哪种态度和观点，就会在随后的人生里始终坚持自己的选择。'——这既是坏消息（你被过去困住了），也是好消息（既然是你选的，你就可以重新选）。\n\n改变人生坐标不是靠'积极思维'，而是靠一次又一次的觉察和新的体验。每一次你选择不讨好、不自我攻击，就是在为'我好，你也好'投票。",
+        "exercise": "画四个象限，诚实地问自己：过去一周，你在哪个象限待得最久？这个位置最早是谁帮你形成的？如果今天主动选'我好你也好'，你会做一个什么不同的决定？"
+      },
+      {
+        "title": "心理游戏：你常玩'可怜的我'吗？",
+        "takeaway": "我们无意识地玩着心理游戏，只为证明自己'早就知道会这样'",
+        "content": "苍鹭在咨询中发现，蛤蟆一直在玩一个心理游戏——PLOM（Poor Little Old Me，可怜弱小的我）。\n\n心理游戏的特征：\n• 有固定的剧本和角色（受害者、迫害者、拯救者）\n• 玩的人浑然不觉\n• 结局总是让人感觉糟糕，但又'不出所料'\n• 最终加强了自己的人生坐标\n\n蛤蟆的PLOM游戏：\n1. 遇到一个强势的人（比如獾）\n2. 自动进入'顺从的儿童'状态\n3. 被对方批评、支配\n4. 事后感到委屈、愤怒、无力\n5. 结论：'看吧，我就是这么没用'\n→ 人生坐标'我不好，你好'再次被证实 ✔\n\n常见的心理游戏：\n• '是啊...但是...'——别人给任何建议都否定，证明'没人能帮我'\n• '如果不是因为你'——把自己的不快乐归咎于别人\n• '看我为你做了这么多'——用牺牲控制别人，然后抱怨不被感激\n• '踢我啊'——故意激怒别人，然后说'你看你对我多不好'\n\n💡 关键洞察：我们玩游戏是因为游戏有'回报'——它让我们待在自己熟悉的人生坐标里。即使是痛苦的坐标，也比未知的坐标让人感到安全。\n\n打破游戏的方法很简单也很难：觉察到自己在玩。当你意识到'又来了，我又在扮演受害者了'，游戏就失去了魔力。",
+        "exercise": "回忆最近一次让你感觉'又来了'的冲突。你扮演了什么角色？对方扮演了什么角色？这个游戏的'回报'是什么（证明了你什么信念）？写下来。"
+      },
+      {
+        "title": "情绪温度计：学会给自己的感受打分",
+        "takeaway": "情绪被量化的那一刻，就从一团迷雾变成了可以管理的东西",
+        "content": "苍鹭在第一次咨询时问蛤蟆：'如果1代表非常糟糕，10代表非常快乐，你现在的感受是几？'\n\n蛤蟆愣了一下——他从来没想过情绪可以被量化。\n\n情绪温度计的使用方法：\n\n1️⃣ 当下打分\n'现在，此刻，1-10分，你的情绪状态是几分？'\n不需要精确，凭直觉。\n\n2️⃣ 定位身体\n'这个分数，你在身体的哪个部位感觉到它？'\n是胸口的闷？喉咙的紧？还是胃里的沉？\n\n3️⃣ 命名情绪\n'这个感觉叫什么名字？'\n不只是'不开心'——是悲伤？愤怒？焦虑？失望？委屈？\n情绪被精确命名，大脑的杏仁核活跃度就会降低。\n\n4️⃣ 回溯变化\n'上一次你打这个分数是什么时候？发生了什么？'\n'今天早上你是几分？中午呢？发生了什么事让分数变化？'\n\n蛤蟆从第一次咨询的'1或2分'（非常糟糕），到最后一次咨询时说：'也许是8分？不，9分！我想是9分。''但重要的是，就算只有5分或6分，我也会没事的。'\n\n💡 关键洞察：苍鹭说：'情绪温度计的目的不是让你永远10分——那是不可能的。目的是让你知道自己的情绪在变化，而你可以观察它、理解它、不被它淹没。'",
+        "exercise": "现在停下来，给自己的情绪状态打个分（1-10）。然后记录：这个分数在你身体的哪个部位？它叫什么名字？今天早上你是几分？"
+      },
+      {
+        "title": "蛤蟆的觉醒：10次咨询改变了什么？",
+        "takeaway": "改变不是成为另一个人，而是停止假装成为别人期待的那个人",
+        "content": "蛤蟆先生的10次心理咨询，浓缩了一个人从抑郁到觉醒的全过程。\n\n第1-2次：觉察\n'我感觉自己很糟糕，但我说不清为什么。'\n蛤蟆学会了识别三种自我状态，发现自己大部分时间都在'顺从的儿童'里。\n\n第3-4次：回溯\n'我的童年没有被打骂，但父亲从不满意。'\n蛤蟆理解了人生坐标的形成——不是被'教'的，而是在日复一日的互动中'内化'的。\n\n第5-6次：面对\n'我好像在玩一个'可怜的我'的游戏。'\n蛤蟆看到了自己的PLOM游戏，看到了自己对愤怒的恐惧，看到了自己如何用'讨好'来控制关系。\n\n第7-8次：哀悼\n'我父亲已经去世了，但他还在我的脑子里。'\n蛤蟆为童年没有被好好爱过而哀悼，为'顺从的儿童'承受的一切而流泪。哀悼不是软弱，是放下的开始。\n\n第9-10次：整合\n'我开始为自己做决定了。不是为了反抗谁，而是因为我想这样做。'\n蛤蟆的成人自我变得强壮。他不再在'顺从'和'叛逆'之间摇摆，而是找到了属于自己的声音。\n\n💡 关键洞察：苍鹭说：'心理咨询不是让一个人变得正常，而是让一个人变得真实。'蛤蟆没有变成一个'完美的成功人士'——他变成了他自己。他仍然会难过、会紧张，但他不再假装成别人期待的样子。",
+        "exercise": "如果写一本你自己的'10次觉察日记'，你目前在第几次？你最近一次'为自己做决定而不是迎合别人'是什么时候？"
+      }
+    ]
+  },
+  {
+    "id": "b2",
+    "title": "《被讨厌的勇气》",
+    "author": "岸见一郎/古贺史健",
+    "desc": "一本用对话录形式解读阿德勒心理学的现象级畅销书。如果你觉得'活得很累'、'太在意别人的眼光'，这本书会给你一记当头棒喝。",
+    "framework": "目的论 → 课题分离 → 共同体感觉 → 自卑感 → 活在当下",
+    "chapters": [
+      {
+        "title": "目的论：你的人生不是过去决定的",
+        "takeaway": "重要的不是被给予了什么，而是如何使用被给予的东西",
+        "content": "这是阿德勒心理学最颠覆认知的观点，也是全书的第一枚炸弹。\n\n弗洛伊德（原因论）：过去的创伤造就了现在的我。\n→ '我社交恐惧，因为小时候被嘲笑过。'\n→ '我自卑，因为父母总拿我和别人比。'\n\n阿德勒（目的论）：我们为了某个'目的'，选择了现在的行为。\n→ '我为了不社交这个目的，把过去的经历当理由。'\n→ '我为了不改变，抓住自卑当挡箭牌。'\n\n听起来很残酷？但哲人接着说：\n'你的朋友不是因为不安才无法出门——他是为了不出门才制造出不安的情绪。'\n\n目的论的意义不在于'指责你自找的'，而在于——\n如果过去不是原因，那就意味着：你可以改变。你的现在不是被四十年前的某个事件锁死的。\n\n📖 书中的金句：\n'人并不受过去的原因所左右，而是朝着自己决定的目的而生活。'\n'你之所以无法改变，是因为自己不断下着不改变的决定。'\n\n💡 关键洞察：我们害怕改变，不是因为过去太重，而是因为未来太不确定。保持'现在的痛苦'比面对'改变的未知'更有安全感——这就是为什么人们宁愿抱怨也不行动。",
+        "exercise": "找一件你一直说'我没办法'的事。问自己：如果诚实面对，我是'不能改变'还是'不想改变'？如果放下'过去的理由'，我今天可以做什么不同的选择？"
+      },
+      {
+        "title": "课题分离：把别人的事还给别人",
+        "takeaway": "不为满足他人的期待而活，别人也不为满足你的期待而活",
+        "content": "这是阿德勒心理学最实用的工具，也是最难做到的一项。\n\n🔑 判断标准只有一个：这件事的最终后果由谁承担？\n\n• 孩子不写作业 → 被老师批评的是孩子 → 孩子的课题\n• 你担心孩子 → 这份担心的感受是你承担 → 你的课题是'处理自己的担心'\n• 别人怎么看你 → 那是别人的大脑在想 → 别人的课题\n• 你要不要表达观点 → 后果你承担 → 你的课题\n\n常见的课题混淆现场：\n\n❌ '领导会不会满意我的方案？' → 领导的课题\n✅ '我是否尽力做到最好了？' → 你的课题\n\n❌ '我这样说别人会不会不高兴？' → 别人的课题\n✅ '我的表达是否尊重事实和善意？' → 你的课题\n\n❌ '孩子/伴侣应该按照我说的做' → 这是干涉别人的课题\n✅ '我可以说出我的担心和建议，但选择权在对方' → 这是课题分离\n\n💡 关键洞察：哲人说——'不去干涉别人的课题，也不让别人干涉自己的课题。'这不是冷漠，而是一种深刻的爱：我爱你也尊重你，所以我不替你活你的人生。\n\n课题分离最难的不是'不管别人'，而是'不怕别人不喜欢自己'。这就是书名《被讨厌的勇气》的含义——真正的自由，是拥有被某些人讨厌的勇气。因为不管你做得多好，总会有人不满意。那不是你的课题。",
+        "exercise": "列出2-3个最近让你焦虑的人际关系问题。用'最终后果谁承担'这个标准逐一分析。写下：我的课题是___，别人的课题是___。然后把纸翻过来——别人的课题，放手。"
+      },
+      {
+        "title": "共同体感觉：幸福的三个层次",
+        "takeaway": "幸福不是'被认可'，而是'感到自己对共同体有用'",
+        "content": "阿德勒说：所有烦恼都来自人际关系，所有幸福的根源也在于人际关系——具体来说，是'共同体感觉'（Social Interest）。\n\n共同体感觉包含三个递进的层次：\n\n🌱 第一层：自我接纳\n不是'我很棒'的自我欺骗，而是——\n'此刻的我确实有做不到的事，我接纳这个现实。同时，我能改变的部分，我会去改。'\n\n自我接纳 ≠ 自我肯定\n• 自我肯定：'我能行！我很强！'（可能是在骗自己）\n• 自我接纳：'我这次考了60分。60分就是60分。然后我看看，怎么从60分进步到70分。'（诚实而平静）\n\n🌿 第二层：他人信赖\n无条件地相信他人。不是'因为你值得信任所以我信你'，而是'我选择相信你'。\n\n这确实有被背叛的风险。但阿德勒说——不信任的代价更大：如果你总是在防备别人，你将失去所有深度的连接。信赖是把自己从'怀疑'的牢笼里放出来。\n\n🌳 第三层：他者贡献\n为共同体做贡献。不是因为想被表扬，而是因为'我是有用的'这种感觉本身就是幸福的核心。\n\n贡献不一定是大事：认真回复一个帖子、给同事倒杯水、在社群里分享有用的信息——都让你感到自己属于一个更大的整体，而你在这个整体里有价值。\n\n💡 关键洞察：阿德勒指出，很多人的痛苦来自'认可欲求'——总想被别人认可、被表扬。但认可欲求让你成为别人的奴隶。而他者贡献告诉你：你做一件事的意义，在于这件事本身，不在于别人怎样评价。",
+        "exercise": "今天做一件'不是为了被感谢'的好事。比如匿名帮一个忙、在社群里认真回答一个问题。体会'不为认可'的贡献是什么感受。"
+      },
+      {
+        "title": "自卑感与自卑情结：一个推你向上，一个拉你下坠",
+        "takeaway": "健康的自卑是'我不够好，所以我要努力'；病态的自卑是'我不够好，所以我没办法'",
+        "content": "阿德勒是第一个把自卑感当作心理学核心概念的人。他自己小时候体弱多病、成绩平平，在兄弟中不受偏爱——所以他知道自卑是什么感觉。\n\n但阿德勒区分了两样东西：\n\n🟢 自卑感（Inferiority Feeling）\n• '我在这方面有不足'\n• 这是正常的、普遍的、人人都有\n• 它推动人去努力、去成长、去追求卓越\n• 阿德勒说：自卑感是进步的动力\n\n🔴 自卑情结（Inferiority Complex）\n• '我因为有这个不足，所以我整个人都不行'\n• 它不是一个客观事实，而是一个自我限制的叙事\n• 它让人停止行动，把自卑当借口\n• '我学历低，所以找不到好工作' → 用自卑逃避努力\n\n自卑情结的变体——优越情结：\n有些人用'炫耀优越'来掩饰自卑。真正自信的人不需要炫耀。那些到处显摆的人，往往内心在说：'求你看看我，我真的挺不错的，对吗？'\n\n还有更隐蔽的——夸耀不幸：\n'我这么惨，你们都得体谅我。'\n'你不懂，我经历过的事你根本不懂。'\n用不幸作为特权，让全世界为自己让路——这是自卑情结的另一种形式。\n\n💡 关键洞察：阿德勒说，自卑感本身不是问题——没有自卑感，人类还在山洞里。问题是你把自卑当成了'停滞的理由'还是'前进的燃料'。",
+        "exercise": "写出你身上一个你认为是'缺陷'的特点。然后诚实地问：这是'推动我努力的自卑感'，还是'被我当借口的自卑情结'？如果我放下这个情结，我今天会开始做什么？"
+      },
+      {
+        "title": "活在当下：人生是一连串的瞬间",
+        "takeaway": "人生不是一条'从现在到目标'的线，而是无数个'此刻'的点",
+        "content": "阿德勒心理学最后一个也是最重要的命题——如何度过这一生？\n\n我们大多数人活在'线性人生'的叙事里：\n'等我考上大学就好了...等我找到工作就好了...等我还完房贷就好了...等我退休就好了...'\n→ 永远在等待一个尚未到来的时刻，当下只是通往未来的过道。\n\n阿德勒的'当下主义'：\n人生不是一条从A到B的线。人生是无数个连续的'此刻'。每一个此刻都是完整的、自足的。\n\n就像跳舞——跳舞的目的不是'跳到对面那个点'，跳舞本身就是目的。你在舞步里，你在旋律里，你活在每一个动作里。\n\n人生也是一样：\n• 工作不是为了'退休'，工作的每一个时刻就是你的人生\n• 学习不是为了'毕业'，学习的过程就是你的人生\n• 关系不是为了'到达某个结果'，相处的每一刻就是关系本身\n\n💡 关键洞察：哲人说——'人生最大的谎言，就是此时此刻之外还有一个更值得活的人生。'\n\n当你不再把当下当成'为了到达未来而必须忍耐的中转站'，你会发现，认真品味一杯水、用心回复一条消息、专注完成一个任务——这些都是人生的实相本身。",
+        "exercise": "今天找一件日常小事（走路、喝水、回复消息），用100%的注意力去做它。不是'快点做完去干下一件'，而是——这件事本身就是目的。体会一下'活在当下'是什么身体感受。"
+      }
+    ]
+  },
+  {
+    "id": "b3",
+    "title": "《非暴力沟通》",
+    "author": "马歇尔·卢森堡",
+    "desc": "一本改变了全世界沟通方式的书。NVC不只是'好好说话'的技巧，更是一套看见自己需要、理解他人需要的生命哲学。",
+    "framework": "观察 → 感受 → 需要 → 请求 → 同理心倾听",
+    "chapters": [
+      {
+        "title": "观察不评判：只说事实，不加标签",
+        "takeaway": "评判让人防御，观察让人连接——第一步决定整个对话的走向",
+        "content": "NVC四步法的第一步，也是最难的一步：区分'观察'和'评判'。\n\n我们每天说的话里，充满了评判而不自知：\n\n❌ 评判：'你总是不尊重我。'\n✅ 观察：'今天会议上，我说话时你打断了三次。'\n\n❌ 评判：'你这个人好懒。'\n✅ 观察：'这周房间的地没有扫过。垃圾还在昨天的位置。'\n\n❌ 评判：'你从来不听我说话。'\n✅ 观察：'刚才我和你说话时，你在看手机。我问了一个问题，你没有回应。'\n\n评判的问题在哪里？\n1. 对方立刻防御 → '我哪有！''你才总是...''你太敏感了'\n2. 转移焦点 → 从'这件事'变成了'谁对谁错'\n3. 切断连接 → 没人喜欢被贴标签\n\n而观察是：我告诉你我看到了什么。没有夸张（'总是'）、没有定性（'你这个人'）、没有猜测（'你就是故意的'）。只是这件事本身。\n\n💡 关键洞察：卢森堡说——'当我们在观察中混入评判，别人听到的就是批评，并因此抗拒我们正在说的话。'\n\n练习观察不是为了'说话委婉'，而是为了创造一个空间，在这个空间里，对方不需要防御，才能听到你接下来要说的感受和需要。",
+        "exercise": "回想最近一次让你生气的人际互动。用'观察'的语言重新描述这件事——删掉所有'你总是''你从来''你这个人'之类的评判词，只写事实。感受一下两种表达的差异。"
+      },
+      {
+        "title": "感受与需要：情绪是需要的信使",
+        "takeaway": "每一个愤怒背后都有一个受伤的需要，找到它，愤怒就转化了",
+        "content": "NVC的第二步和第三步：表达感受，并连接到背后的需要。\n\n我们被教得太好了——我们习惯说'我觉得...'，但后面跟的不是感受，而是想法或指责：\n\n• '我觉得你不关心我' → 这不是感受，这是对别人的评判\n• '我觉得这样做不对' → 这不是感受，这是一个观点\n• '我觉得很委屈、孤单' → 这才是感受\n\n感受的词汇表（我们比想象中更缺乏情绪词汇）：\n😔 需要未被满足时：焦虑、失望、孤独、委屈、愤怒、伤心、疲惫、沮丧、无助...\n😊 需要被满足时：安心、感动、温暖、放松、满足、感激、兴奋、平静...\n\n感受背后的需要：\n人类的普遍需要包括——尊重、理解、安全、自主、休息、连接、意义、被看见...\n\n每当你感到不舒服，那个感受是在告诉你：'有一个需要没有被满足。'\n\n• 愤怒 → 可能是尊重的需要没被满足\n• 委屈 → 可能是'被看见'或'被公平对待'的需要\n• 焦虑 → 可能是安全或确定性的需要\n• 疲惫 → 可能是休息或自主的需要\n\n💡 关键洞察：卢森堡说——'每一个指责背后，都有一个未被满足的需要在哭泣。'当你学会在情绪中找需要，你就从'抱怨别人'转向了'照顾好自己'。",
+        "exercise": "选一个最近让你不舒服的情绪。完成这个填空：'我感到___（感受），因为我需要___（需要）。'不是为了指责谁，只是为自己的需要命名。"
+      },
+      {
+        "title": "请求不命令：给对方自由，才能获得真心",
+        "takeaway": "请求和命令的区别只有一点：当对方说'不'时，你的反应是什么",
+        "content": "NVC第四步，也是最容易被误用的一步。\n\n请求 vs 命令，不是看语言形式，而是看——\n当对方拒绝时，你的态度是什么？\n\n命令：'你把垃圾倒一下。'\n→ 对方说'现在不想' → 你生气、指责、惩罚（冷战/甩脸色）\n→ 这就是命令的证明：不允许拒绝\n\n请求：'垃圾满了，你愿意现在去倒一下吗？'\n→ 对方说'现在不想，我半小时后去' → '好的，谢谢'\n→ 这才是请求：给对方自由，尊重对方的选择\n\n好的请求有三个条件：\n1. 具体可行 → '你愿意每周三晚上和我一起吃饭吗？'比'你能不能多关心我？'好\n2. 正向表达 → '请这样做'比'不要那样做'好\n3. 当下可操作 → 对方说'好'或'不好'，当下就有结果\n\n💡 关键洞察：卢森堡说——'请求的精华在于，当对方说不时，我们依然能够保持善意。'这不是弱者的退让，而是强者的自信：我不需要用命令来控制你，因为我尊重你是一个独立的人。\n\n讽刺的是：当你允许对方说'不'时，对方反而更可能真心说'好'。因为那不是被强迫的，是自愿的。",
+        "exercise": "把你最近对某人的一个要求（可能是孩子、伴侣、同事），从'命令式'改写为'请求式'。包含：具体行动 + '你愿意...吗？' + 接受对方说不的心理准备。然后真的去试一下。"
+      },
+      {
+        "title": "同理心倾听：听见语言背后的需要",
+        "takeaway": "不要急着给建议，先让对方感到'我被听见了'",
+        "content": "NVC不仅是'怎么说'，更是'怎么听'。卢森堡说：同理心是'带着尊重去理解他人经验'的能力。\n\n大多数人怎么'听'？\n• 别人说到一半，我们已经在想怎么回应了\n• '我懂我懂，我也有过...' → 急于分享自己的经验\n• '你应该...''你有没有试过...' → 急于给建议\n• '别难过了，都会好的' → 急于安慰、跳过情绪\n• '这有什么，你看我...' → 比较和评判\n\n同理心倾听是：\n'我放下自己的判断、建议和故事，全然地进入你的世界。我不指望能用我的尺子量你。我只是在那里，努力理解。'\n\n具体做法：\n1. 安静地听，注视对方\n2. 听完后，不是给建议，而是猜测对方的感受和需要：\n'听起来你感到___（感受），因为你很看重___（需要），对吗？'\n3. 如果猜错了，让对方纠正——'不完全是，我更多是...''谢谢你告诉我'\n\n💡 关键洞察：卢森堡引用了一句话——'不要只是做什么，站在那里。'（Don't just do something, stand there.）很多时候，对方不需要你的解决方案。对方需要的是——你在，你在听，你在努力理解。被听见，是人类的深层需要。",
+        "exercise": "今天和一个人对话时，练习'只听不给建议'。对方说完后，只做一件事：复述你听到的感受和需要——'听起来你感到___，因为你需要___，对吗？'看看对方的反应。"
+      }
+    ]
+  },
+  {
+    "id": "b4",
+    "title": "《也许你该找个人聊聊》",
+    "author": "洛莉·戈特利布",
+    "desc": "一位心理治疗师的回忆录。她既是治疗别人的治疗师，也是接受治疗的患者。这本书让你坐在治疗室的第一排，看着疗愈是如何发生的。",
+    "framework": "治疗师的脆弱 → 来访者的故事 → 防御与改变 → 被看见的力量",
+    "chapters": [
+      {
+        "title": "治疗师也在接受治疗",
+        "takeaway": "痛苦是普遍的，不分职业、不分身份——承认'我需要帮助'是勇敢，不是软弱",
+        "content": "洛莉·戈特利布是一位成功的心理治疗师。她写《纽约时报》专栏，患者排着队等她。\n\n然后她遭遇了失恋——被一个她以为会结婚的男人突然抛弃。她崩溃了。\n\n她去看了心理治疗师——温德尔。\n\n当她坐在治疗室的沙发上，从治疗师变成患者的那一刻，她才发现：以前她对患者说的那些话——'这需要一个过程''允许自己感受这些情绪''相信时间'——听起来是多么苍白。因为当她自己在痛苦中时，这些道理都帮不了她。\n\n但正是在这个位置上，她才真正理解了她的来访者们。她不再是一个'会走路的人生建议'，而是一个和来访者一样的、正在努力的人。\n\n💡 关键洞察：治疗不是'一个健康的人修理一个生病的人'。治疗是两个人坐在同一个房间里——一个人努力理解另一个人，同时也在理解自己。治疗师和来访者，在各自的路上，一起走一段。",
+        "exercise": "你上一次对别人说'我不好，我需要帮助'是什么时候？如果已经很久了，今天试试对一个人说——'我最近有点难，不需要你做什么，就是想让你知道。'"
+      },
+      {
+        "title": "我们为什么抗拒改变？",
+        "takeaway": "改变之所以难，不是因为'不知道怎么做'，而是因为改变意味着失去熟悉的自己",
+        "content": "书中有四个主要来访者，每个人的故事都揭示了一种我们抗拒改变的常见方式：\n\n约翰——成功的编剧，对谁都刻薄。他的防御是'愤怒'。愤怒让他不必感受内心深处的哀伤——他年幼的儿子死于车祸。面对愤怒比面对失去容易得多。\n\n朱莉——33岁，新婚，刚被诊断出晚期癌症。她的困境是'不可控'——当人生计划被撕碎，如何面对有限的时间？她的故事不是关于治愈，而是关于在无法改变的事面前，如何依然活着。\n\n瑞塔——69岁，认为自己的人生已经完了。她的防御是'绝望'——如果认定人生已经没有希望，就不用面对'我本可以做些什么'的后悔。\n\n夏洛特——20多岁，不断重复同样的问题关系。她的防御是'逃避责任'——用酒精、用抱怨外在环境来回避'我自己选择了什么'。\n\n💡 关键洞察：治疗中有一个共通现象——来访者来治疗是为了'不改变'。他们想变好，但不想改变。他们想痛苦消失，但不想放弃自己习惯的应对方式。真正的改变发生在——当你愿意放弃'熟悉的痛苦'，去面对'未知的自由'。",
+        "exercise": "如果诚实地问自己：有没有一件事，你明知道对自己不好，但依然在做？那件事帮你逃避了什么更深的感觉？"
+      },
+      {
+        "title": "被看见，就是疗愈的开始",
+        "takeaway": "有时候治愈不是发生在'我解决了问题'，而是发生在'有一个人在那里，我的痛苦被看到了'",
+        "content": "书的最后，洛莉总结了她在治疗室学到的最重要的一课：\n\n疗愈的核心不是理论、不是技术、不是聪明的问题。\n\n是人本主义心理学家卡尔·罗杰斯发现的三个条件：\n\n1. 真诚一致（Congruence）\n有一个人在你面前是真实的，不带面具。洛莉对来访者坦诚她的失误，温德尔对洛莉坦诚他的观察。当治疗师真实时，来访者也慢慢敢真实了。\n\n2. 无条件积极关注（Unconditional Positive Regard）\n有一个人——无论你呈现出什么样的自己，愤怒的、脆弱的、矛盾的、说了不该说的话的自己——都接纳你。你不必'够好'才值得被看见。\n\n3. 共情理解（Empathic Understanding）\n有一个人努力进入你的世界——用你的眼睛看，用你的心感受。不是'我懂你'的轻率判断，而是'我在试着理解你'的谦卑陪伴。\n\n💡 关键洞察：洛莉写道——'我们都在某种程度上需要被看见。不是被审阅，不是被评价。是被看见。真实的、完整的自己，被另一个人看见。当那个发生的时候，疗愈就开始了。'\n\n这也是为什么'找个人聊聊'如此重要。你不一定需要治疗师。你需要的是一个真正愿意听的人。",
+        "exercise": "今天，为一个人创造'被看见'的体验。放下手机，不看手表，不准备回答。只是看着TA，听TA说话。如果TA分享了一些脆弱的东西，不要说'会好的'，说'谢谢你告诉我这些，我在这里。'"
+      }
+    ]
+  },
+  {
+    "id": "b5",
+    "title": "《心流：最优体验心理学》",
+    "author": "米哈里·契克森米哈伊",
+    "desc": "一本关于'幸福是什么'的科学著作。契克森米哈伊发现，人类最幸福的时刻不是放松休闲时，而是全身心投入一件事、忘记时间流逝的那一刻。",
+    "framework": "心流8特征 → 进入条件 → 工作心流 → 日常心流",
+    "chapters": [
+      {
+        "title": "什么是最优体验？心流的8个特征",
+        "takeaway": "幸福不是'什么都不做'的放松，而是'全身心投入'的专注",
+        "content": "契克森米哈伊研究了数千人的'最优体验'时刻——艺术家、运动员、外科医生、流水线工人、攀岩者、棋手。他发现了一个惊人一致的规律：\n\n当人们描述最幸福的时刻时，他们都在说同一件事——完全沉浸在一件事中，忘记了时间、忘记了自我、忘记了所有烦恼。他把这种状态称为'心流'（Flow）。\n\n心流的8个特征：\n1. 明确的目标——你知道每一步要做什么\n2. 即时反馈——你立刻知道做得好不好\n3. 挑战与技能匹配——不太难（焦虑）也不太容易（无聊）\n4. 行动与意识合一——你不再'想着做'，你就是在做\n5. 高度专注——所有注意力都在这件事上\n6. 掌控感——你感到自己能控制局面\n7. 自我消失——不再在意别人怎么看自己\n8. 时间感扭曲——一小时像一分钟，或一分钟像一小时\n\n💡 关键洞察：人们以为幸福是'轻松、休闲、不费力'。但研究发现，人们在'什么都不做'的时候反而是最不快乐的——大脑会胡思乱想、焦虑、空虚。真正的幸福来自'有序的意识'：你把注意力完全投注在一件事上。意识不再混乱，而是像水流一样顺畅。",
+        "exercise": "回忆一次你'忘记了时间'的体验——画画、打游戏、写代码、做饭、运动...那时你在做什么？你是一个人还是和别人一起？这个回忆告诉了你关于自己的什么？"
+      },
+      {
+        "title": "进入心流的三个条件",
+        "takeaway": "心流不是等来的，是被创造出来的——像一个精心设计的游戏",
+        "content": "心流不是偶然发生的。契克森米哈伊发现，只要满足三个条件，任何人都可以进入心流状态：\n\n🎯 条件一：清晰的目标\n不是'我要学英语'（太模糊），而是'我要背完这一课的20个单词'。\n心流需要你知道——'现在，此刻，我要做什么？'\n\n📊 条件二：即时反馈\n你时刻知道自己做得怎么样。\n• 攀岩者知道手有没有抓稳\n• 外科医生知道每一刀的反馈\n• 写作者看到屏幕上在增加字数\n反馈让你可以持续调整，保持投入。\n\n⚖️ 条件三：挑战与技能的黄金配比\n• 挑战远大于技能 → 焦虑（我做不来）\n• 挑战远小于技能 → 无聊（太简单了）\n• 挑战约等于技能但稍高一点 → 心流！\n\n这就是为什么游戏那么吸引人——它们专门设计成：目标清晰（打到下一关）、反馈即时（得分/掉血）、难度渐进（越来越难但保持在你的能力边界上）。\n\n💡 关键洞察：你可以把你的工作、学习、甚至家务，都设计成'游戏'。这个任务的目标是什么？我怎么知道我做得怎样？难度是否刚好比我现在的能力高一点点？",
+        "exercise": "选一件今天要做的事（工作或学习）。把它拆成几个'心流单元'：每个单元有一个小目标、一个完成标准。比如：不是'今天写报告'，而是'25分钟内写出第1-2段的初稿'。试一下。"
+      },
+      {
+        "title": "在日常中创造心流：工作、关系和独处",
+        "takeaway": "心流不是生活的点缀，而是生活的组织原则",
+        "content": "契克森米哈伊的研究有一个反直觉的发现——\n\n人们在工作时比在休闲时更容易进入心流状态。但人们却说'希望少工作、多休闲'。我们以为休闲让我们快乐，但实际上，漫无目的的休闲让我们无聊和焦虑。\n\n🛠 工作中的心流\n• 不是换工作，而是换做工作的方式\n• 找到一个你能'精益求精'的环节\n• 给自己设小挑战：更快、更好、更漂亮\n• 自我反馈：'今天这一步比昨天做得更好了'\n\n👥 关系中的心流\n• 全然地倾听一个人 = 心流\n• 一起做一件事（做饭、散步、下棋）比单纯聊天更容易产生心流\n• 关系的心流是：你和另一个人'在一起'的同时，也失去了'自我意识'\n\n🧘 独处中的心流\n• 独自阅读、写作、跑步、弹琴...\n• 关键是有结构——'我现在做这个，我知道做得好不好'\n• 最糟糕的独处是'不知道做什么好，刷刷手机吧'→ 这不会带来心流，只会带来空虚\n\n💡 关键洞察：契克森米哈伊说——'掌握自己的内在体验的人，就能决定自己的生活质量。'心流不是一种偶尔发生的'美好体验'，而是一种可以被刻意练习的能力。你不需要等待一个完美的时刻——你可以把任何时刻，变成心流。",
+        "exercise": "选一件你'不得不做'的日常任务（通勤、洗碗、整理文件），设计成心流体验。设一个挑战（在X分钟内完成？做得比上次更好看？完全不碰手机？），完成后自我反馈。"
+      }
+    ]
+  },
+  {
+    "id": "b6",
+    "title": "《自卑与超越》",
+    "author": "阿尔弗雷德·阿德勒",
+    "desc": "个体心理学的奠基之作。阿德勒说：自卑感是人类的普遍处境，但它不是缺陷——它是所有文明进步的起点。关键是，你如何超越它。",
+    "framework": "自卑感 → 补偿与超越 → 生活风格 → 合作与社会兴趣",
+    "chapters": [
+      {
+        "title": "自卑感：人类进步的发动机",
+        "takeaway": "没有自卑感，人类还在山洞里——问题不是自卑本身，而是你往哪个方向补偿",
+        "content": "阿德勒在这本书中提出了一个石破天惊的论点：\n\n自卑感不是一种'心理疾病'，而是人类的普遍处境。每个人都自卑，每时每刻都在自卑。\n\n为什么？因为人类天生就是脆弱的：\n• 婴儿时期——完全依赖他人，最弱小无助\n• 成长中——总有不擅长的领域\n• 成年后——面对疾病、衰老、死亡\n\n自卑感本身不是问题。问题是——\n\n🟢 建设性补偿：\n'我体育不好 → 我努力读书找到自信'（补偿到另一个领域）\n'我口才不好 → 我刻意练习演讲'（正面改善）\n这就是人类进步的引擎——所有发明、艺术、科学的成就，背后都有一种'我不满足于现状'的自卑感在推动。\n\n🔴 破坏性补偿：\n'我低人一等 → 我要让别人都比我更惨'\n'我不行 → 我活在自己的幻想里，假装自己很行'\n这就是犯罪、成瘾、精神疾病的心理根源——用错误的方式逃避自卑感。\n\n💡 关键洞察：阿德勒认为，人生意义不在于消除自卑感（那不可能），而在于把自卑感引导到对共同体有益的方向。自卑感是燃料——它驱动你，但它不告诉你方向。方向是你选的。",
+        "exercise": "写下一个你一直觉得自己'不如人'的方面。然后列出两种补偿路径：①建设性的（把力量用在什么好的地方）②破坏性的（可能怎样走偏）。诚实面对——你目前更接近哪个方向？"
+      },
+      {
+        "title": "生活风格：你是如何应对自己的脆弱的？",
+        "takeaway": "每个人在4-5岁时就形成了一套'生活风格'——它决定了你一生如何追求安全感",
+        "content": "阿德勒说，每个人在童年早期（4-5岁）就形成了一套独特的'生活风格'（Life Style）——这是你理解世界、应对挑战、追求安全感的基本模板。\n\n四种典型的生活风格：\n\n1. 支配型\n追求控制，希望别人服从自己。\n'只要我在上面，我就安全。'\n危险：变成暴君，无法与他人建立平等关系。\n\n2. 索取型\n依赖他人，期待被照顾。\n'只要有人替我解决问题，我就没事。'\n危险：永远不长大，成为别人的负担。\n\n3. 回避型\n不面对问题，能拖就拖。\n'只要我不尝试，就不会失败。'\n危险：人生越来越小，机会一个个溜走。\n\n4. 贡献型（健康型）\n面对问题，寻求合作，关心他人。\n'我们一起解决，对大家都好的方案是什么？'\n\n💡 关键洞察：阿德勒说——'每个人的生活风格，就是他们的私人逻辑。它是扭曲的、不客观的，但这个人自己浑然不觉。'\n\n觉察你的生活风格，就是开始问自己：\n• 面对压力时，我的默认反应是什么？（攻击？逃避？依赖？讨好？）\n• 这个反应模式是什么时候形成的？\n• 它曾经帮过我，但现在是不是在困住我？",
+        "exercise": "回忆你童年时的一个难忘场景（4-10岁左右）。在那个场景里，你用什么方式应对了困境？那个方式——是不是你今天还在用？它还在帮你吗？"
+      },
+      {
+        "title": "合作与社会兴趣：真正的超越是连接",
+        "takeaway": "一个人只有在与他人的连接中，才能超越自己的局限",
+        "content": "阿德勒全书最核心的答案：如何超越自卑？\n\n他的回答只有一个字：合作。\n\n'所有失败者——神经症、罪犯、酗酒者、问题儿童、自杀者——他们失败的原因，都是缺乏社会兴趣和合作能力。'\n\n这不是说'你要合群'。阿德勒说的'社会兴趣'（Social Interest / Gemeinschaftsgefühl）有三层含义：\n\n1. 对人类共同体的归属感\n'我不是一座孤岛。我的存在是更大整体的一部分。'\n\n2. 对他人的共情和关心\n'我能感受到你的感受。你的幸福和我的幸福不是无关的。'\n\n3. 为共同体做贡献的意愿\n'我用我的能力为更大的整体创造价值。'\n\n💡 关键洞察：阿德勒治疗过一个抑郁症患者。他没有分析她的童年，没有讨论她的信念。他只是在一次会谈结束时说：'你有14天时间。在这14天里，每天花1小时，想着一件事——如何让一个人开心。'\n\n你猜怎么着？她的抑郁消失了。\n\n不是因为阿德勒是魔法师，而是因为——当你把注意力从'我够不够好'转向'我能给别人什么'，自卑感就失去了它的能量来源。超越自卑的终极方式不是'让自己变强'，而是'让自己有用'。",
+        "exercise": "今天的练习很简单：做一件小事，让另一个人的生活变得好一点点。可以是一句话、一个举动、一个分享。然后注意——在做这件事的那几分钟里，你还在想'我够不够好'吗？"
+      }
+    ]
+  }
+],
   writePrompts:[
 
   ],
@@ -1411,23 +1769,45 @@ var H2={
     T('疗愈书写已保存 💚');
   },
   // ── Classroom Mode ──
-  initClassroom:function(){
-    var self=this,h='';this.classroom.forEach(function(lesson){
-      h+='<div class="exercise-card" onclick="H2.showLesson('+(lesson.num-1)+')" style="cursor:pointer"><span class="ex-num">'+lesson.num+'</span><span style="font-weight:600;color:var(--dbrown)">'+lesson.title+'</span><div style="font-size:12px;color:var(--tlight);margin-top:4px;margin-left:36px">'+lesson.source+'</div></div>';
+    initClassroom:function(){
+    var self=this,h='';this.classroom.forEach(function(book,i){
+      h+='<div class="book-card" onclick="H2.showBook('+i+')" style="cursor:pointer">';
+      h+='<div style="font-size:20px;font-weight:700;color:var(--dbrown);margin-bottom:4px">'+book.title+'</div>';
+      h+='<div style="font-size:13px;color:var(--tlight);margin-bottom:8px">'+book.author+'  |  '+book.chapters.length+'讲</div>';
+      h+='<div style="font-size:13px;color:var(--text);margin-bottom:8px;line-height:1.6">'+book.desc+'</div>';
+      h+='<div class="book-fw">🧭 '+book.framework+'</div>';
+      h+='</div>';
     });
     document.getElementById('classroom-list').style.display='block';
     document.getElementById('classroom-list').innerHTML=h;
     document.getElementById('classroom-detail').style.display='none';
   },
-  showLesson:function(i){
-    var lesson=this.classroom[i];
-    var content=lesson.content.replace(/\\n/g,'<br>');
-    var h='<div style="margin-bottom:12px"><button class="btn btn-o btn-s" onclick="H2.initClassroom()">← 返回列表</button></div>';
-    h+='<div style="font-size:18px;font-weight:700;color:var(--dgreen);margin-bottom:2px">'+lesson.title+'</div>';
-    h+='<div style="font-size:13px;color:var(--tlight);margin-bottom:12px">'+lesson.source+'</div>';
-    h+='<div style="background:var(--bg);border-radius:14px;padding:16px;font-size:14px;line-height:2.2;white-space:pre-line">'+content+'</div>';
-    h+='<div style="background:var(--lgreen);border-radius:12px;padding:14px;margin-top:12px"><span style="font-weight:700;color:var(--dgreen)">✏ 课后练习：</span><span style="font-size:14px;color:var(--text)">'+lesson.exercise+'</span></div>';
-    h+='<div style="margin-top:12px;text-align:center"><button class="btn btn-p" onclick="H2.initClassroom()">✅ 已完成学习</button></div>';
+
+  showBook:function(i){
+    var book=this.classroom[i];
+    var h='<div style="margin-bottom:12px"><button class="btn btn-o btn-s" onclick="H2.initClassroom()">← 返回书单</button></div>';
+    h+='<div style="font-size:22px;font-weight:700;color:var(--dbrown);margin-bottom:4px">'+book.title+'</div>';
+    h+='<div style="font-size:14px;color:var(--tlight);margin-bottom:12px">'+book.author+'</div>';
+    h+='<div style="font-size:14px;color:var(--text);margin-bottom:16px;line-height:1.8">'+book.desc+'</div>';
+    h+='<div style="background:var(--lgreen);border-radius:12px;padding:14px;margin-bottom:16px"><span style="font-weight:700;color:var(--dgreen)">🧭 学习框架：</span><span style="font-size:13px;color:var(--text)">'+book.framework+'</span></div>';
+    h+='<div style="font-size:14px;font-weight:600;color:var(--dgreen);margin-bottom:8px">📚 课程列表（'+book.chapters.length+'讲）</div>';
+    var self=this;
+    book.chapters.forEach(function(ch,j){
+      h+='<div class="exercise-card" onclick="H2.showLesson('+i+','+j+')" style="cursor:pointer"><span class="ex-num">'+(j+1)+'</span><span style="font-weight:600;color:var(--dbrown)">'+ch.title+'</span><div class="takeaway-chip">💡 '+ch.takeaway+'</div></div>';
+    });
+    document.getElementById('classroom-list').style.display='none';
+    var cd=document.getElementById('classroom-detail');cd.style.display='block';cd.innerHTML=h;
+    cd.scrollIntoView({behavior:'smooth'});
+  },
+  showLesson:function(bookIdx,chapIdx){
+    var book=this.classroom[bookIdx];
+    var ch=book.chapters[chapIdx];
+    var h='<div style="margin-bottom:12px"><button class="btn btn-o btn-s" onclick="H2.showBook('+bookIdx+')">← 返回'+book.title+'</button></div>';
+    h+='<div style="font-size:12px;color:var(--tlight);margin-bottom:2px">'+book.title+' | 第'+(chapIdx+1)+'讲</div>';
+    h+='<div style="font-size:20px;font-weight:700;color:var(--dgreen);margin-bottom:12px">'+ch.title+'</div>';
+    h+='<div style="background:var(--bg);border-radius:14px;padding:16px;font-size:14px;line-height:2.2;white-space:pre-line">'+ch.content+'</div>';
+    h+='<div style="background:var(--lgreen);border-radius:12px;padding:14px;margin-top:12px"><span style="font-weight:700;color:var(--dgreen)">✏ 课后练习：</span><span style="font-size:14px;color:var(--text)">'+ch.exercise+'</span></div>';
+    h+='<div style="margin-top:12px;text-align:center"><button class="btn btn-p" onclick="H2.showBook('+bookIdx+')">✅ 已完成学习</button></div>';
     document.getElementById('classroom-list').style.display='none';
     var cd=document.getElementById('classroom-detail');cd.style.display='block';cd.innerHTML=h;
     cd.scrollIntoView({behavior:'smooth'});
@@ -1492,22 +1872,104 @@ var P2={
     for(var j=1;j<pts.length;j++)h+='<line x1="'+pts[j-1].x+'" y1="'+pts[j-1].y+'" x2="'+pts[j].x+'" y2="'+pts[j].y+'" stroke="var(--green)" stroke-width="1.5" opacity=".5"/>';
     if(!pts.length)h='<text x="200" y="70" text-anchor="middle" font-size="13" fill="var(--tmuted)">开始记录心情，这里会显示趋势</text>';
     svg.innerHTML=h;
+  },
+  setFont:function(f){
+    S.set('pref_font',f);
+    if(f==='serif')document.body.classList.add('font-serif');
+    else document.body.classList.remove('font-serif');
+    document.querySelectorAll('.font-opt').forEach(function(b){b.classList.remove('active')});
+    document.querySelector('.font-opt[data-font="'+f+'"]').classList.add('active');
+  },
+  setSize:function(s){
+    S.set('pref_size',s);
+    document.body.classList.remove('size-s','size-l');
+    if(s==='s')document.body.classList.add('size-s');
+    if(s==='l')document.body.classList.add('size-l');
+    document.querySelectorAll('.size-opt').forEach(function(b){b.classList.remove('active')});
+    document.querySelector('.size-opt[data-size="'+s+'"]').classList.add('active');
+  },
+  initAppearance:function(){
+    var f=S.get('pref_font','default'),s=S.get('pref_size','m');
+    if(f==='serif')document.body.classList.add('font-serif');
+    if(s==='s')document.body.classList.add('size-s');
+    if(s==='l')document.body.classList.add('size-l');
+    var fa=document.querySelector('.font-opt[data-font="'+f+'"]');
+    if(fa)fa.classList.add('active');
+    var sa=document.querySelector('.size-opt[data-size="'+s+'"]');
+    if(sa)sa.classList.add('active');
+  },
+  exportAll:function(){
+    // Collect all data
+    var start=prompt('开始日期（如 2026-01-01）：','2026-01-01');
+    if(!start)return;
+    var end=prompt('结束日期（如 2026-05-28）：',today());
+    if(!end)return;
+    var moods=S.get('moods',[]).filter(function(r){return r.time.slice(0,10)>=start&&r.time.slice(0,10)<=end});
+    var lines=[],map={1:'😢',2:'😕',3:'😐',4:'😀',5:'😊'};
+    // Collect dates from all sources
+    var allDates={};
+    moods.forEach(function(r){var d=r.time.slice(0,10);if(!allDates[d])allDates[d]={moods:[]};allDates[d].moods.push(r)});
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k.startsWith('mh_grat_20')){
+        var d=k.replace('mh_grat_','');
+        if(d>=start&&d<=end){
+          if(!allDates[d])allDates[d]={moods:[]};
+          allDates[d].grat=S.get(k.replace('mh_',''),['','','']);
+        }
+      }
+      if(k.startsWith('mh_write_20')){
+        var d=k.replace('mh_write_','');
+        if(d>=start&&d<=end){
+          if(!allDates[d])allDates[d]={moods:[]};
+          allDates[d].diary=S.get(k.replace('mh_',''),'');
+        }
+      }
+    }
+    if(!Object.keys(allDates).length){T('所选日期范围无数据');return}
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('  心灵驿站 · 全量记录');
+    lines.push('  '+start+' ~ '+end);
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('');
+    var dates=Object.keys(allDates).sort();
+    dates.forEach(function(d){
+      var day=allDates[d];
+      lines.push('━━━━━━━━━━━━━━━━━━');
+      var label=d;
+      if(day.moods.length){
+        var last=day.moods[day.moods.length-1];
+        label+='  心情：'+(map[last.level]||'');
+      }
+      lines.push(label);
+      lines.push('');
+      if(day.diary&&day.diary.trim()){
+        lines.push(day.diary.trim());
+        lines.push('');
+      }
+      if(day.grat&&day.grat.some(function(x){return x.trim()})){
+        lines.push('🙏 感恩：');
+        day.grat.forEach(function(g,i){if(g.trim())lines.push((i+1)+'. '+g.trim())});
+        lines.push('');
+      }
+    });
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('  感谢每一天，感谢你自己');
+    lines.push('  心灵驿站 · xinlingyizhan');
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    var blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='xinlingyizhan_'+start+'_'+end+'.txt';a.click();
+    T('已导出 '+dates.length+' 天记录 ✓');
   }
 };
 
 // ═══════════════ INIT ═══════════════
-// Render zen tips
-(function(){
-  var h='';G2.zenTips.forEach(function(t){h+='<div style="background:var(--card);border-radius:10px;padding:12px 14px;margin-bottom:6px;border:1px solid var(--bdl)"><div style="font-weight:700;color:var(--dgreen);margin-bottom:2px">'+t[0]+'</div><div style="font-size:13px;color:var(--text)">'+t[1]+'</div></div>'});
-  document.getElementById('atips').innerHTML=h;
-})();
-
-// Init
 function _initUI(){
+  P2.initAppearance();
   F.initPomo();F.renderPomo();F.renderBreath();
-  J.refreshGrat();J.loadDiary();J.renderTimeline();
-  G2.showZen();H2.initChat();H2.initExercises();H2.initWritePrompts();H2.initClassroom();
-  H.render();
+  TODAY.init();
+  H2.initChat();H2.initExercises();H2.initWritePrompts();H2.initClassroom();
 }
 // Init: check auth, sync if logged in
 (async function initApp(){
@@ -1531,6 +1993,7 @@ setTimeout(function(){_initUI()},3000);
 
 // ── Supabase Auth ──
 async function signIn(){
+  if(!sb){T('云同步不可用（Supabase 未加载），请使用离线模式');return}
   var e=document.getElementById('auth-email').value.trim(),p=document.getElementById('auth-pw').value;
   if(!e||!p){T('请输入邮箱和密码');return}
   var r=await sb.auth.signInWithPassword({email:e,password:p});
@@ -1538,6 +2001,7 @@ async function signIn(){
   else{refreshAuthUI();syncFromServer(function(status){if(status==='empty'){var hasLocal=false;for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k.indexOf('mh_')===0){hasLocal=true;break}}if(hasLocal){pushLocalToServer().then(function(){syncFromServer(function(){_initUI();T('欢迎回来！数据已同步')})});return}}_initUI();T('欢迎回来！数据已同步')})}
 }
 async function signUp(){
+  if(!sb){T('云同步不可用（Supabase 未加载），请使用离线模式');return}
   var e=document.getElementById('auth-email').value.trim(),p=document.getElementById('auth-pw').value;
   if(!e||!p||p.length<6){T('密码至少6位');return}
   var r=await sb.auth.signUp({email:e,password:p});
@@ -1554,13 +2018,14 @@ async function syncNow(){
   }catch(e){T('同步失败: '+e.message);console.log('syncNow err:',e)}
 }
 async function signOut(){
-  await sb.auth.signOut();
+  if(sb){try{await sb.auth.signOut()}catch(e){}}
   refreshAuthUI();
   localStorage.clear();
   T('已退出登录');
 }
 async function refreshAuthUI(){
-  var s=(await sb.auth.getSession()).data?.session;
+  var s=null;
+  if(sb){try{var r=await sb.auth.getSession();s=r.data?.session}catch(e){}}
   if(s&&s.user){
     document.getElementById('auth-logged-out').style.display='none';
     document.getElementById('auth-logged-in').style.display='block';
@@ -1572,3 +2037,5 @@ async function refreshAuthUI(){
 }
 
 </script>
+</body>
+</html>
