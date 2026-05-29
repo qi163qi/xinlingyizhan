@@ -1043,9 +1043,12 @@ var TODAY={
 
   // ── Date ──
   goDay:function(delta){
+    var pre=this.date;
     var d=new Date(this.date);
     d.setUTCDate(d.getUTCDate()+delta);
     this.date=d.toISOString().slice(0,10);
+    console.log('goDay',delta,pre,'->',this.date);
+    T('翻到 '+this.date);
     this.init();
   },
 
