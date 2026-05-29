@@ -1092,15 +1092,21 @@ var TODAY={
     var labels={1:'😢 难过',2:'😕 低落',3:'😐 平静',4:'😀 开心',5:'😊 幸福'};
     document.getElementById('td-mood-label').textContent='已选：'+labels[level];
     this._selectedMood=level;
+    var btns=document.querySelectorAll('#td-mbtns .mood-btn');
+    btns.forEach(function(b){b.classList.remove('sel')});
+    btns[level-1].classList.add('sel');
   },
 
   loadMood:function(){
     var self=this;this._selectedMood=null;
     var moods=S.get('moods',[]);
+    var btns=document.querySelectorAll('#td-mbtns .mood-btn');
+    btns.forEach(function(b){b.classList.remove('sel')});
     moods.forEach(function(m){if(m.time&&m.time.slice(0,10)===self.date)self._selectedMood=m.level;});
     if(this._selectedMood){
       var labels={1:'😢 难过',2:'😕 低落',3:'😐 平静',4:'😀 开心',5:'😊 幸福'};
       document.getElementById('td-mood-label').textContent='已记录：'+labels[this._selectedMood];
+      btns[this._selectedMood-1].classList.add('sel');
     }else{
       document.getElementById('td-mood-label').textContent='';
     }
