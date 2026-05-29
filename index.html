@@ -1033,12 +1033,12 @@ var TODAY={
   date:new Date().toISOString().slice(0,10),
 
   init:function(){
-    this.renderDateLabel();
-    this.loadMood();
-    this.loadDiary();
-    this.loadGratitude();
-    this.loadAwakening();
-    this.drawChart();
+    try{this.renderDateLabel()}catch(e){console.log('renderDateLabel err:',e)}
+    try{this.loadMood()}catch(e){console.log('loadMood err:',e)}
+    try{this.loadDiary()}catch(e){console.log('loadDiary err:',e)}
+    try{this.loadGratitude()}catch(e){console.log('loadGratitude err:',e)}
+    try{this.loadAwakening()}catch(e){console.log('loadAwakening err:',e)}
+    try{this.drawChart()}catch(e){console.log('drawChart err:',e)}
   },
 
   // ── Date ──
@@ -1063,12 +1063,13 @@ var TODAY={
     var hasDiary=S.get('write_'+this.date,'');
     var hasGrat=S.get('grat_'+this.date,['','','']).join('');
     if(hasMood||hasDiary||hasGrat)label+=' ●';
-    document.getElementById('td-date-label').textContent=label;
+    var el=document.getElementById('td-date-label');if(el)el.textContent=label;
     // Update card titles based on date
     var prefix=isToday?'今日':'📝 补录';
-    document.getElementById('td-mood-title').textContent=prefix+'心情'+(isToday?'':' ('+label.split(' ')[0]+')');
-    document.getElementById('td-grat-title').textContent='🙏 '+prefix+'感恩'+(isToday?'':' ('+label.split(' ')[0]+')');
-    document.getElementById('td-diary').placeholder=isToday?'今天想记录什么？任何想法、感受、故事...':'补充这天的日记...';
+    var datePart=label.split(' ')[0];
+    el=document.getElementById('td-mood-title');if(el)el.textContent=prefix+'心情'+(isToday?'':' ('+datePart+')');
+    el=document.getElementById('td-grat-title');if(el)el.textContent='🙏 '+prefix+'感恩'+(isToday?'':' ('+datePart+')');
+    el=document.getElementById('td-diary');if(el)el.placeholder=isToday?'今天想记录什么？任何想法、感受、故事...':'补充这天的日记...';
   },
 
   pickDate:function(){
