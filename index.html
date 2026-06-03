@@ -346,7 +346,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <button class="btn btn-o btn-s" onclick="TODAY.goDay(-1)">◀</button>
       <span style="font-size:16px;font-weight:700;color:var(--dbrown);cursor:pointer" id="td-date-label" onclick="TODAY.pickDate()">今天</span>
       <button class="btn btn-o btn-s" onclick="TODAY.goDay(1)">▶</button>
-      <input type="date" id="td-date-picker" style="display:none;position:absolute" onchange="TODAY.onDatePick()">
+    </div>
+
+    <!-- Custom Calendar -->
+    <div class="card" id="td-calendar" style="display:none;padding:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <button class="btn btn-o btn-s" onclick="TODAY.calPrevMonth()">◀</button>
+        <span style="font-weight:700;color:var(--dbrown);font-size:14px" id="td-cal-title"></span>
+        <button class="btn btn-o btn-s" onclick="TODAY.calNextMonth()">▶</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:11px;color:var(--tmuted);margin-bottom:4px">
+        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+      </div>
+      <div id="td-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"></div>
+      <div style="font-size:11px;color:var(--tlight);margin-top:6px;text-align:center">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px;vertical-align:middle"></span> 有记录
+      </div>
     </div>
 
     <!-- Daily Awakening -->
@@ -1072,16 +1087,68 @@ var TODAY={
     el=document.getElementById('td-diary');if(el)el.placeholder=isToday?'今天想记录什么？任何想法、感受、故事...':'补充这天的日记...';
   },
 
+  _calYear:null,_calMonth:null,
+
   pickDate:function(){
-    var inp=document.getElementById('td-date-picker');
-    inp.style.display='block';inp.value=this.date;
-    inp.showPicker();
+    var d=new Date(this.date);
+    this._calYear=d.getUTCFullYear();
+    this._calMonth=d.getUTCMonth();
+    this.renderCalendar();
+    var cal=document.getElementById('td-calendar');
+    cal.style.display=cal.style.display==='none'?'block':'none';
   },
 
-  onDatePick:function(){
-    var v=document.getElementById('td-date-picker').value;
-    document.getElementById('td-date-picker').style.display='none';
-    if(v){this.date=v;this.init();}
+  renderCalendar:function(){
+    var y=this._calYear,m=this._calMonth;
+    document.getElementById('td-cal-title').textContent=y+'年'+(m+1)+'月';
+    // Collect dates with records
+    var recs={};
+    var moods=S.get('moods',[]);
+    moods.forEach(function(r){if(r.time)recs[r.time.slice(0,10)]=1});
+    for(var d in recs){
+      if(!recs[d]){var grat=S.get('grat_'+d,['','','']);if(grat.join(''))recs[d]=1}
+    }
+    // Also check diary and gratitude
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k.startsWith('mh_write_20')){var v=S.get(k.replace('mh_',''),'');if(v)recs[k.replace('mh_write_','')]=1}
+      if(k.startsWith('mh_grat_20')){var v=S.get(k.replace('mh_',''),['','','']);if(v.join(''))recs[k.replace('mh_grat_','')]=1}
+    }
+    var self=this;
+    var firstDay=new Date(Date.UTC(y,m,1));
+    var startDow=firstDay.getUTCDay();
+    var daysInMonth=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+    var today=this.date;
+    var grid=document.getElementById('td-cal-grid'),h='';
+    // Empty cells before first day
+    for(var i=0;i<startDow;i++)h+='<div></div>';
+    for(var d=1;d<=daysInMonth;d++){
+      var ds=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      var hasRec=recs[ds]?true:false;
+      var isToday=ds===today;
+      var bg=isToday?'background:var(--lgreen);font-weight:700':'';
+      var dot=hasRec?'<div style=\'width:6px;height:6px;border-radius:50%;background:var(--green);margin:1px auto 0\'></div>':'';
+      h+='<div style=\'padding:4px 0;cursor:pointer;border-radius:8px;'+bg+'\' onclick="TODAY.pickCalendarDay(\''+ds+'\')">'+d+dot+'</div>';
+    }
+    grid.innerHTML=h;
+  },
+
+  pickCalendarDay:function(ds){
+    this.date=ds;
+    document.getElementById('td-calendar').style.display='none';
+    this.init();
+  },
+
+  calPrevMonth:function(){
+    if(this._calMonth===0){this._calYear--;this._calMonth=11}
+    else this._calMonth--;
+    this.renderCalendar();
+  },
+
+  calNextMonth:function(){
+    if(this._calMonth===11){this._calYear++;this._calMonth=0}
+    else this._calMonth++;
+    this.renderCalendar();
   },
 
   // ── Mood ──
