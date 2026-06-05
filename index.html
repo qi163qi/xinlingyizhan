@@ -2080,6 +2080,11 @@ var _initRan=false;
 // Fallback: if Supabase CDN times out, init with local data only
 setTimeout(function(){if(!_initRan)_initUI()},8000);
 
+// ── Register Service Worker (PWA) ──
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+
 // ── Supabase Auth ──
 async function signIn(){
   if(!sb){T('云同步不可用（Supabase 未加载），请使用离线模式');return}
