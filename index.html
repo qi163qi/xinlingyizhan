@@ -581,6 +581,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <button class="btn btn-o" style="flex:1" onclick="P2.exportAll()">📥 导出全部</button>
       <button class="btn btn-o" style="flex:1" onclick="importData()">📤 导入数据</button>
     </div>
+    <div style="text-align:center;margin-top:10px">
+      <button class="btn btn-p" id="pwa-install-btn" style="display:none;width:100%" onclick="if(_installPrompt){_installPrompt.prompt();_installPrompt.userChoice.then(function(r){if(r.outcome==='accepted')document.getElementById('pwa-install-btn').style.display='none'});}">📲 安装到桌面</button>
+    </div>
     <div style="text-align:center;margin:16px 0 24px;font-size:11px;color:var(--tmuted)">v2.0 · 用心陪伴每一天</div>
   </div>
 
@@ -2081,9 +2084,15 @@ var _initRan=false;
 setTimeout(function(){if(!_initRan)_initUI()},8000);
 
 // ── Register Service Worker (PWA) ──
+var _installPrompt=null;
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('sw.js').catch(function(){});
 }
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault();_installPrompt=e;
+  var btn=document.getElementById('pwa-install-btn');
+  if(btn)btn.style.display='inline-flex';
+});
 
 // ── Supabase Auth ──
 async function signIn(){
